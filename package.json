@@ -8,10 +8,13 @@
   "author": "Ryan",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.16.0",
+    "firebase": "^9.6.0",
     "parcel": "^2.0.0-rc.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
+    "babel-install": "2.1.0",
     "sass": "^1.43.4"
   }
 }
