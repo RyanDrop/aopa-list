@@ -1,0 +1,14 @@
+@import "main.scss";
+@import "home";
+@import "log";
+@import "settings";
+
+main#root {
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+}
