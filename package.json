@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
-    "babel-install": "2.1.0",
+    "babel-plugin-transform-html-import-to-string": "^2.0.0",
     "sass": "^1.43.4"
   }
 }
