@@ -1,8 +1,7 @@
+import { ROUTES } from "./constants/routes.js";
 class SinglePageApplication {
   constructor() {
     this.$main = document.querySelector("#root");
-    this.darkMode = new DarkMode();
-    this.log = new Log();
   }
 
   addHashListener() {
@@ -23,7 +22,7 @@ class SinglePageApplication {
     const hasParam = !!param;
     const html = hasParam ? await renderPageFn(param) : await renderPageFn();
     this.$main.appendChild(html);
-    this.addonsPage(fragment);
+    // this.addonsPage(fragment);
   }
 
   windowLoadListener() {

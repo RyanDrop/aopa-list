@@ -1,0 +1,49 @@
+@import "./scss/reset";
+@import "./scss/keyframes";
+@import "./scss/mixins";
+
+main#root {
+  @include flex-center;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --primary-color: #187ddb;
+  --text-color-principal: rgb(10, 10, 10);
+  --text-color-secondary: rgb(70, 70, 70);
+  --label: rgb(107, 107, 107);
+  --background: rgb(255, 255, 255);
+  --border: rgb(172, 172, 172);
+  --light-blue: #7dbdf8;
+  --dark-blue: rgb(23, 21, 168);
+  --red: rgb(201, 48, 31);
+  --green: rgb(10, 173, 59);
+}
+
+.dark-mode:root {
+  --black: #000;
+  --white: #fff;
+  --primary-color: #333746;
+  --text-color-principal: #f0f0f0;
+  --text-color-secondary: rgb(199, 199, 199);
+  --background: #2e303a;
+  --border: rgb(134, 133, 133);
+  --light-blue: #7dbdf8;
+  --dark-blue: rgb(23, 21, 168);
+  --red: rgb(201, 48, 31);
+  --green: rgb(10, 173, 59);
+}
+
+header {
+  height: 165px;
+  width: 100vw;
+  background-color: var(--primary-color);
+  border-radius: 0 0 35px 35px;
+  padding: 20px 20px 0px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.493);
+}
