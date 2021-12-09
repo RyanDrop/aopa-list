@@ -1,0 +1,39 @@
+@import ".../../../../index.scss";
+
+profile-component {
+  @include flex-center;
+
+  .profile-img {
+    @include flex-center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--white);
+    margin-right: 20px;
+    border: 3px solid var(--border);
+    cursor: pointer;
+
+    img {
+      width: 100px;
+      border-radius: 50%;
+    }
+  }
+
+  .profile-name {
+    @include flex-center;
+    flex-direction: column;
+
+    h1 {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--text-color-principal);
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-color-secondary);
+      font-weight: 500;
+    }
+  }
+}
