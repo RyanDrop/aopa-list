@@ -1,0 +1,23 @@
+@import ".../../../../index.scss";
+
+header-menu-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  width: 100%;
+  a {
+    text-decoration: none;
+  }
+  .settings img:hover {
+    animation: rotateSettings 0.8s 1;
+  }
+  .help img:hover {
+    animation: rotateHelp 1s 1;
+  }
+  img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
+}
