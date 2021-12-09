@@ -1,5 +1,17 @@
+@import "keyframes";
+
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin fade-in {
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+@mixin fade-out {
+  opacity: 1;
+  animation: fade-out 0.5s ease-in-out forwards;
 }
