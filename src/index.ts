@@ -1,4 +1,4 @@
-import { ROUTES } from "./constants/routes.js";
+import { ROUTES } from "./constants/routes";
 class SinglePageApplication {
   private $main: HTMLElement;
   constructor() {
