@@ -1,9 +1,10 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 
 export class FirebaseServices {
   constructor() {}
-  start() {
+  app: FirebaseApp;
+  start(): void {
     const firebaseConfig = {
       apiKey: "AIzaSyABrrPTVmSDisUjpVlnnjBvNiSUxd6uT1g",
       authDomain: "aopamundo-storage.firebaseapp.com",
@@ -14,5 +15,17 @@ export class FirebaseServices {
       measurementId: "G-KG4NX23DEQ",
     };
     this.app = initializeApp(firebaseConfig);
+  }
+
+  register(email: string, password: string): void {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.assign("home");
+        console.log("Usuário criado com sucesso");
+      })
+      .catch(() => {
+        console.log("error.message");
+      });
   }
 }
