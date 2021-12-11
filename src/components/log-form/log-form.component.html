@@ -1,0 +1,33 @@
+<div class="card-log">
+  <div class="circle"></div>
+  <section class="content">
+    <div class="content-log">
+      <div class="tab-links">
+        <a class="register active">Register</a>
+        <a class="login">Login</a>
+      </div>
+      <div class="tab-register">
+        <form class="register-form">
+          <input type="text" class="name-input" placeholder="Name" required />
+          <span class="form-error">Name min 3 max 15</span>
+          <input type="text" class="occupation-input" placeholder="Occupation" required />
+          <span class="form-error">Occupation min 2 max 25</span>
+          <input type="email" class="email-register" placeholder="Email address" required /><span class="form-error"
+            >Invalid email address</span
+          >
+          <input type="password" placeholder="Password" /><span class="form-error">Invalid password, at least 8 characters</span>
+          <input type="password" placeholder="Confirm Password" /><span class="form-error">Passwords do not match</span>
+          <button class="submit-register">Create</button>
+        </form>
+      </div>
+      <div class="tab-login">
+        <form class="login-form">
+          <input type="email" placeholder="Email address" /><span class="form-error">Invalid email address</span>
+          <input type="password" placeholder="Password" /> <span class="form-error">Invalid password</span>
+          <button class="submit-login" disabled="false">Login</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <img src="" class="log" alt="logo" />
+</div>

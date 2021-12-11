@@ -23,6 +23,8 @@ main#root {
   --dark-blue: rgb(23, 21, 168);
   --red: rgb(201, 48, 31);
   --green: rgb(10, 173, 59);
+  --medium-blue: #489be9;
+  --marine-blue: #074f80;
 }
 
 .dark-mode:root {
@@ -37,6 +39,8 @@ main#root {
   --dark-blue: rgb(23, 21, 168);
   --red: rgb(201, 48, 31);
   --green: rgb(10, 173, 59);
+  --medium-blue: #4b769e;
+  --marine-blue: #1c4469;
 }
 
 header {
@@ -46,4 +50,12 @@ header {
   border-radius: 0 0 35px 35px;
   padding: 20px 20px 0px 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.493);
+}
+
+.container-log {
+  @include flex-center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
 }
