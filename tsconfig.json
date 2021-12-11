@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs"
+  },
+  "typeRoots": ["node_modules/@types", "../src/typings.d.ts"],
+
+  "exclude": ["node_modules"]
+}
