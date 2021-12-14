@@ -25,7 +25,7 @@ aopa-welcome-card {
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--medium-blue);
+      background: $medium-blue;
       clip-path: circle(120px at center);
       transition: clip-path 0.6s, background-color 0.6s;
     }
@@ -33,7 +33,7 @@ aopa-welcome-card {
 
   &:hover .circle:before {
     clip-path: circle(440px at center);
-    background: var(--marine-blue);
+    background: $marine-blue;
   }
   .logo {
     position: absolute;
@@ -59,20 +59,20 @@ aopa-welcome-card {
     visibility: hidden;
     flex-direction: column;
     h1 {
-      color: var(--white);
+      color: $white;
       font-size: 2rem;
       font-weight: bold;
       line-height: 1em;
       margin-bottom: 20px;
     }
     .description {
-      color: var(--white);
+      color: $white;
       text-align: center;
     }
     button {
       margin-top: 20px;
-      background-color: var(--white);
-      color: var(--marine-blue);
+      background-color: $white;
+      color: $marine-blue;
       border: none;
       border-radius: 10px;
       padding: 10px 20px;
@@ -83,8 +83,8 @@ aopa-welcome-card {
       width: 170px;
 
       &:hover {
-        background-color: var(--medium-blue);
-        color: var(--white);
+        background-color: $medium-blue;
+        color: $white;
       }
     }
   }
@@ -95,7 +95,7 @@ aopa-welcome-card {
 @media (max-width: 600px) {
   aopa-welcome-card {
     border-radius: 0;
-    background-color: var(--marine-blue);
+    background-color: $marine-blue;
     height: 100%;
     width: 100%;
     flex-direction: column;

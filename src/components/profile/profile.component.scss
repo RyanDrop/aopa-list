@@ -8,9 +8,9 @@ aopa-profile {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: $white;
     margin-right: 20px;
-    border: 3px solid var(--border);
+    border: 3px solid $border;
     cursor: pointer;
 
     img {
@@ -27,12 +27,12 @@ aopa-profile {
       font-weight: 700;
       font-size: 20px;
       margin-bottom: 8px;
-      color: var(--text-color-principal);
+      color: $text-color-principal;
     }
 
     p {
       font-size: 16px;
-      color: var(--text-color-secondary);
+      color: $text-color-secondary;
       font-weight: 500;
     }
   }

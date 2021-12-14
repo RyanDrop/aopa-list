@@ -6,7 +6,7 @@ aopa-log-form {
   width: 100vw;
   overflow: hidden;
   user-select: none;
-  .card-log.active {
+  .card-log[login] {
     height: 370px;
   }
   .card-log {
@@ -34,7 +34,7 @@ aopa-log-form {
         left: 0;
         width: 100%;
         height: 100%;
-        background: var(--medium-blue);
+        background: $medium-blue;
         clip-path: circle(120px at center);
         transition: clip-path 0.6s, background-color 0.6s;
       }
@@ -42,7 +42,7 @@ aopa-log-form {
 
     &:hover .circle:before {
       clip-path: circle(440px at center);
-      background: var(--marine-blue);
+      background: $marine-blue;
     }
     img.log {
       position: absolute;
@@ -77,7 +77,7 @@ aopa-log-form {
           width: 100%;
           margin-bottom: 20px;
           a {
-            color: var(--white);
+            color: $white;
             text-decoration: none;
             font-size: 24px;
             font-weight: bold;
@@ -86,19 +86,22 @@ aopa-log-form {
             opacity: 0.5;
             transition: opacity 0.6s;
 
-            &.active {
-              border-bottom: white solid 2px;
+            &[active] {
+              border-bottom: $white solid 2px;
               opacity: 1;
+              animation: fade-in 0.8s;
             }
           }
         }
         .tab-register {
           display: flex;
           width: 100%;
+          animation: fade-in 0.8s;
         }
         .tab-login {
           display: none;
           width: 100%;
+          animation: fade-in 0.8s;
         }
         .register-form {
           @include flex-center;
@@ -117,7 +120,7 @@ aopa-log-form {
             text-align: center;
             height: 26px;
             width: 100%;
-            color: var(--white);
+            color: $white;
           }
           input {
             width: 180px;
@@ -127,7 +130,7 @@ aopa-log-form {
             padding: 5px 10px;
             font-size: 1rem;
             font-weight: 700;
-            background-color: var(--white);
+            background-color: $white;
             color: var(--black);
             transition: opacity 0.2s;
             margin-bottom: 5px;
@@ -140,15 +143,15 @@ aopa-log-form {
             padding: 0;
             font-weight: bold;
             border-radius: 6px;
-            background-color: var(--white);
-            color: var(--marine-blue);
+            background-color: $white;
+            color: $marine-blue;
             border: none;
             margin-bottom: 10px;
             cursor: pointer;
             transition: color 0.3s, background-color 0.3s;
             &:hover {
-              background-color: var(--medium-blue);
-              color: var(--white);
+              background-color: $medium-blue;
+              color: $white;
             }
           }
         }
@@ -164,7 +167,7 @@ aopa-log-form {
 
   @media (max-width: 600px) {
     border-radius: 0;
-    background-color: var(--marine-blue);
+    background-color: $marine-blue;
     .card-log {
       height: 100%;
       width: 100%;
