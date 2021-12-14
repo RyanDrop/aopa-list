@@ -1,7 +1,12 @@
-import { Home } from "../pages/home/home";
-import { Log } from "../pages/log/log";
+import { Home } from "../pages/home/home.page";
+import { Log } from "../pages/log/log.page";
 
-export const ROUTES = {
+interface IRoute {
+  home: Function;
+  log: Function;
+}
+
+export const ROUTES: IRoute = {
   home: Home,
   log: Log,
 };
