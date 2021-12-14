@@ -1,0 +1,17 @@
+@import ".../../../../index.scss";
+
+aopa-home-page {
+  @include flex-center;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+  flex-direction: column;
+  background-color: $background;
+  header {
+    height: 165px;
+    width: 100%;
+    background-color: $primary-color;
+    border-radius: 0 0 35px 35px;
+    padding: 20px 20px 0px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.493);
+  }
+}
