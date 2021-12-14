@@ -23,7 +23,6 @@ class SinglePageApplication {
     const hasParam = !!param;
     const html = hasParam ? await renderPageFn(param) : await renderPageFn();
     this.$main.appendChild(html);
-    // this.addonsPage(fragment);
   }
 
   windowLoadListener(): void {

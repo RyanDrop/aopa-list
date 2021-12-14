@@ -3,6 +3,7 @@ import welcomeCardStyle from "./welcome-card.component.scss";
 import logoPath from "../../assets/images/list.png";
 
 export class WelcomeCardComponent extends HTMLElement {
+  private customStyle = welcomeCardStyle;
   constructor() {
     super();
   }
@@ -11,7 +12,6 @@ export class WelcomeCardComponent extends HTMLElement {
   private $logo: HTMLImageElement;
 
   connectedCallback(): void {
-    const style = welcomeCardStyle;
     this.innerHTML = welcomeCardTemplate;
 
     this.$logo = this.querySelector(".logo");
@@ -19,10 +19,8 @@ export class WelcomeCardComponent extends HTMLElement {
 
     this.$buttonLog = this.querySelector(".log");
 
-    this.$buttonLog.addEventListener("click", () => {
-      const $event = new Event("load-log-form");
-      this.dispatchEvent($event);
-    });
+    const $event = new Event("load-log-form");
+    this.$buttonLog.addEventListener("click", () => this.dispatchEvent($event));
   }
 }
 

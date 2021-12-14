@@ -26,17 +26,13 @@ export class LogFormComponent extends HTMLElement {
     this.$tabRegister = this.querySelector(".tab-register");
     this.$tabLogin = this.querySelector(".tab-login");
 
-    this.elementsEventsListeners();
-  }
-
-  elementsEventsListeners(): void {
     this.$aRegister.addEventListener("click", () => {
       this.tabDisplay(this.$tabLogin, this.$tabRegister);
-      this.toggleClassElements();
+      this.toggleAttributeElements();
     });
     this.$aLogin.addEventListener("click", () => {
       this.tabDisplay(this.$tabRegister, this.$tabLogin);
-      this.toggleClassElements();
+      this.toggleAttributeElements();
     });
   }
 
@@ -45,10 +41,10 @@ export class LogFormComponent extends HTMLElement {
     displayFlex.style.display = "flex";
   }
 
-  toggleClassElements(): void {
-    this.$aLogin.classList.toggle("active");
-    this.$aRegister.classList.toggle("active");
-    this.$cardLog.classList.toggle("active");
+  toggleAttributeElements(): void {
+    this.$aLogin.toggleAttribute("active");
+    this.$aRegister.toggleAttribute("active");
+    this.$cardLog.toggleAttribute("login");
   }
 }
 customElements.define("aopa-log-form", LogFormComponent);
