@@ -1,20 +1,29 @@
 import logoPath from "../../assets/images/list.png";
 import logFormTemplate from "./log-form.component.html";
 import logFormStyles from "./log-form.component.scss";
+import { FirebaseServices } from "../../services/firebase.service";
 
 export class LogFormComponent extends HTMLElement {
-  constructor() {
-    super();
-  }
+  private firebaseServices: FirebaseServices;
   private $tabRegister: HTMLDivElement;
   private $tabLogin: HTMLDivElement;
   private $aLogin: HTMLAnchorElement;
   private $log: HTMLImageElement;
   private $aRegister: HTMLAnchorElement;
   private $cardLog: HTMLDivElement;
+  private $nameForm: HTMLInputElement;
+  private $occupationForm: HTMLInputElement;
+  private $registerEmail: HTMLInputElement;
+  private $registerPassword: HTMLInputElement;
+  private $mathPassword: HTMLInputElement;
+  private $buttonRegister: HTMLButtonElement;
+  private customStyle = logFormStyles;
+  constructor() {
+    super();
+    this.firebaseServices = new FirebaseServices();
+  }
 
   connectedCallback(): void {
-    const style = logFormStyles;
     this.innerHTML = logFormTemplate;
 
     this.$log = this.querySelector(".log");
@@ -34,6 +43,24 @@ export class LogFormComponent extends HTMLElement {
       this.tabDisplay(this.$tabRegister, this.$tabLogin);
       this.toggleAttributeElements();
     });
+
+    this.firebaseServices.start();
+
+    this.$nameForm = this.querySelector(".input-name");
+    this.$occupationForm = this.querySelector(".input-occupation");
+    this.$registerEmail = this.querySelector(".register-email");
+    this.$registerPassword = this.querySelector(".register-password");
+    this.$mathPassword = this.querySelector(".math-password");
+    this.$buttonRegister = this.querySelector(".register-submit");
+
+    this.$buttonRegister.addEventListener("click", () => {
+      this.firebaseServices.register(
+        this.$registerEmail.value,
+        this.$registerPassword.value,
+        this.$nameForm.value,
+        this.$occupationForm.value
+      );
+    });
   }
 
   tabDisplay(displayNone: HTMLDivElement, displayFlex: HTMLDivElement): void {
@@ -46,5 +73,7 @@ export class LogFormComponent extends HTMLElement {
     this.$aRegister.toggleAttribute("active");
     this.$cardLog.toggleAttribute("login");
   }
+
+  formListeners() {}
 }
 customElements.define("aopa-log-form", LogFormComponent);
