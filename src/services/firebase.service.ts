@@ -1,6 +1,20 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
+import { getFirestore, collection, addDoc, Timestamp, updateDoc, doc } from "firebase/firestore";
+import { Observable } from "../classes/observable.js";
 
+interface User {
+  personal_information: {
+    name: string;
+    occupation: string;
+    gender: null | string;
+    birthday: null | Date;
+  };
+  preferences: {
+    dark_mode: boolean;
+    phrases_API: boolean;
+  };
+}
 export class FirebaseServices {
   constructor() {}
   app: FirebaseApp;
@@ -17,15 +31,41 @@ export class FirebaseServices {
     this.app = initializeApp(firebaseConfig);
   }
 
-  register(email: string, password: string): void {
+  register(email: string, password: string, name: string, occupation: string): void {
     const auth = getAuth();
+    const user: User = {
+      personal_information: {
+        name: name,
+        occupation: occupation,
+        gender: null,
+        birthday: null,
+      },
+      preferences: {
+        dark_mode: false,
+        phrases_API: true,
+      },
+    };
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        window.location.assign("home");
-        console.log("Usuário criado com sucesso");
+        this.registerDices(user);
       })
       .catch(() => {
         console.log("error.message");
       });
+  }
+
+  async registerDices(user: object): Promise<void> {
+    const auth = getAuth();
+    const db = getFirestore();
+    const userCollectionReference = collection(db, "User_ID");
+    const userDocReference = doc(userCollectionReference, auth.currentUser.uid);
+    const userDices = collection(userDocReference, "profile");
+
+    try {
+      await addDoc(userDices, user);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
 }
