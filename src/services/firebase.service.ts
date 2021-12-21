@@ -1,7 +1,7 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc, Timestamp, updateDoc, doc } from "firebase/firestore";
-import { Observable } from "../classes/observable.js";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { Observable } from "../classes/observable";
 
 interface User {
   personal_information: {
@@ -16,9 +16,11 @@ interface User {
   };
 }
 export class FirebaseServices {
-  constructor() {}
+  public user$ = new Observable<User>();
+
+  public hasLogin$ = new Observable<boolean>();
   app: FirebaseApp;
-  start(): void {
+  constructor() {
     const firebaseConfig = {
       apiKey: "AIzaSyABrrPTVmSDisUjpVlnnjBvNiSUxd6uT1g",
       authDomain: "aopamundo-storage.firebaseapp.com",
@@ -29,6 +31,32 @@ export class FirebaseServices {
       measurementId: "G-KG4NX23DEQ",
     };
     this.app = initializeApp(firebaseConfig);
+    this.hasLogin();
+  }
+
+  getUser() {
+    const auth = getAuth();
+    const db = getFirestore();
+    const userDocReference = doc(db, "user_id", auth.currentUser.uid);
+    getDoc(userDocReference)
+      .then((doc) => {
+        const user = doc.data();
+        this.user$.publish(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
+  private hasLogin(): void {
+    const auth = getAuth();
+    this.hasLogin$.publish(false);
+    onAuthStateChanged(auth, () => {
+      if (auth.currentUser) {
+        this.getUser();
+        this.hasLogin$.publish(true);
+      }
+    });
   }
 
   register(email: string, password: string, name: string, occupation: string): void {
@@ -58,14 +86,29 @@ export class FirebaseServices {
   async registerDices(user: object): Promise<void> {
     const auth = getAuth();
     const db = getFirestore();
-    const userCollectionReference = collection(db, "User_ID");
-    const userDocReference = doc(userCollectionReference, auth.currentUser.uid);
-    const userDices = collection(userDocReference, "profile");
+    const userDocReference = doc(db, "user_id", auth.currentUser.uid);
 
     try {
-      await addDoc(userDices, user);
+      await setDoc(userDocReference, user);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+  }
+
+  login(email: string, password: string): void {
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        this.getUser();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
+  logout(): void {
+    const auth = getAuth();
+    signOut(auth);
   }
 }
