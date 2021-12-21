@@ -9,26 +9,26 @@
       <div class="tab-register">
         <form class="register-form">
           <input type="text" class="input-name" placeholder="Name" required />
-          <span class="form-error">Name min 3 max 15</span>
+          <span class="form-error">Minimum 3 letters and maximum 15</span>
           <input type="text" class="input-occupation" placeholder="Occupation" required />
-          <span class="form-error">Occupation min 2 max 25</span>
+          <span class="form-error">Minimum 3 letters and maximum 30</span>
           <input type="email" class="register-email" placeholder="Email address" required /><span class="form-error"
             >Invalid email address</span
           >
           <input type="password" placeholder="Password" class="register-password" /><span class="form-error"
-            >Invalid password, at least 8 characters</span
+            >Invalid password, at least 6 characters</span
           >
           <input type="password" placeholder="Confirm Password" class="match-password" /><span class="form-error"
             >Passwords do not match</span
           >
-          <button class="register-submit">Create</button>
+          <button disabled class="register-submit">Create</button>
         </form>
       </div>
       <div class="tab-login">
         <form class="login-form">
-          <input type="email" placeholder="Email address" /><span class="form-error">Invalid email address</span>
-          <input type="password" placeholder="Password" /> <span class="form-error">Invalid password</span>
-          <button class="submit-login" disabled="false">Login</button>
+          <input type="email" placeholder="Email address" class="login-email" /><span class="form-error">Invalid email address</span>
+          <input type="password" placeholder="Password" class="login-password" /> <span class="form-error">Invalid password</span>
+          <button disabled class="login-submit">Login</button>
         </form>
       </div>
     </div>

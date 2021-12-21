@@ -12,7 +12,7 @@ aopa-log-form {
   .card-log {
     position: relative;
     display: flex;
-    height: 520px;
+    height: 530px;
     width: 350px;
     align-items: center;
     border-radius: 20px;
@@ -115,7 +115,6 @@ aopa-log-form {
         }
         form {
           span {
-            visibility: hidden;
             font-size: 12px;
             text-align: center;
             height: 26px;
@@ -123,7 +122,7 @@ aopa-log-form {
             color: $white;
           }
           input {
-            width: 180px;
+            width: 215px;
             height: 30px;
             border: none;
             border-radius: 6px;
@@ -134,11 +133,28 @@ aopa-log-form {
             color: var(--black);
             transition: opacity 0.2s;
             margin-bottom: 5px;
+            &.invalid {
+              outline: #ff00008c solid 3px;
+
+              & + .form-error {
+                opacity: 1;
+              }
+            }
+          }
+
+          & .form-error {
+            opacity: 0;
+            transition: opacity 1s;
+            color: $border;
+            font-size: 12px;
+            width: 100%;
+            text-align: center;
+            padding: 4px;
           }
           button {
             font-family: "Poppins", sans-serif;
             font-size: 16px;
-            width: 180px;
+            width: 215px;
             height: 30px;
             padding: 0;
             font-weight: bold;
@@ -152,6 +168,11 @@ aopa-log-form {
             &:hover {
               background-color: $medium-blue;
               color: $white;
+            }
+            &:disabled {
+              background-color: $border;
+              color: $marine-blue;
+              cursor: not-allowed;
             }
           }
         }
