@@ -10,7 +10,7 @@ class SinglePageApplication {
   }
 
   getTargetRoute(hash: string): string {
-    return hash === "" ? "home" : hash.replace("#", "");
+    return hash === "" ? "log" : hash.replace("#", "");
   }
 
   async renderPage(): Promise<void> {
@@ -36,3 +36,8 @@ class SinglePageApplication {
 const app = new SinglePageApplication();
 app.addHashListener();
 app.windowLoadListener();
+
+const emptyHash = window.location.hash === "";
+const defaultRoute = () => (window.location.href = "?#log");
+
+if (emptyHash) defaultRoute();
