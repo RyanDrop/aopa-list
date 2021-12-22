@@ -35,9 +35,9 @@ class SinglePageApplication {
     const [fragment, param] = targetRoute.split("/");
     const renderPageFn = ROUTES[fragment];
     const hasParam = !!param;
+    await this.firebaseServices.hasLogin();
     const $html = hasParam ? await renderPageFn(param) : await renderPageFn();
     $html.firebaseServices = this.firebaseServices;
-    await this.firebaseServices.hasLogin();
     this.$main.appendChild($html);
   }
 

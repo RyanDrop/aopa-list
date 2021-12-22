@@ -32,7 +32,6 @@ export class LogPage extends HTMLElement {
       $welcome.remove();
       this.appendChild($logForm);
     });
-
     this.appendChild($welcome);
   }
 }
