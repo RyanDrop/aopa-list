@@ -39,3 +39,37 @@
     opacity: 0;
   }
 }
+
+@keyframes rotate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  40% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-30deg);
+  }
+  80% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes opacity-home {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
