@@ -9,21 +9,26 @@ export async function Log(): Promise<HTMLElement> {
 }
 
 export class LogPage extends HTMLElement {
-  private firebaseServices: FirebaseServices;
+  private _firebaseServices: FirebaseServices;
   private customStyle = LogPageStyles;
   private declarations = [WelcomeCardComponent, LogFormComponent];
+
+  set firebaseServices(firebaseServices: FirebaseServices) {
+    this._firebaseServices = firebaseServices;
+  }
+
   constructor() {
     super();
-    this.firebaseServices = new FirebaseServices();
-    this.firebaseServices.hasLogin$.subscribe((hasUser) => {
-      if (hasUser) window.location.href = "/?#home";
-    });
   }
 
   connectedCallback() {
+    this._firebaseServices.user$.subscribe((hasUser) => {
+      if (hasUser) window.location.href = "/?#home";
+    });
     const $welcome = document.createElement("aopa-welcome-card");
     $welcome.addEventListener("load-log-form", () => {
-      const $logForm = document.createElement("aopa-log-form");
+      const $logForm = document.createElement("aopa-log-form") as LogFormComponent;
+      $logForm.firebaseServices = this._firebaseServices;
       $welcome.remove();
       this.appendChild($logForm);
     });

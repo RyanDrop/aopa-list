@@ -1,12 +1,12 @@
+import logoPath from "../../assets/images/list.png";
 import { Validators } from "../../classes/validator";
 import { FirebaseServices } from "../../services/firebase.service";
 import { UtilsService } from "../../services/utils.service";
-import logoPath from "../../assets/images/list.png";
 import logFormTemplate from "./log-form.component.html";
 import logFormStyles from "./log-form.component.scss";
 
 export class LogFormComponent extends HTMLElement {
-  private firebaseServices: FirebaseServices;
+  private _firebaseServices: FirebaseServices;
   private validators: Validators;
   private $tabRegister: HTMLDivElement;
   private $tabLogin: HTMLDivElement;
@@ -27,7 +27,9 @@ export class LogFormComponent extends HTMLElement {
   constructor() {
     super();
     this.validators = new Validators();
-    this.firebaseServices = new FirebaseServices();
+  }
+  set firebaseServices(firebaseServices: FirebaseServices) {
+    this._firebaseServices = firebaseServices;
   }
 
   connectedCallback(): void {
@@ -63,7 +65,7 @@ export class LogFormComponent extends HTMLElement {
 
     this.formListenersRegisterValidate();
     this.$buttonRegister.addEventListener("click", () => {
-      this.firebaseServices.register(
+      this._firebaseServices.register(
         this.$registerEmail.value,
         this.$registerPassword.value,
         this.$nameForm.value,
@@ -73,7 +75,7 @@ export class LogFormComponent extends HTMLElement {
 
     this.formListenersLoginValidate();
     this.$buttonLogin.addEventListener("click", () => {
-      this.firebaseServices.login(this.$loginEmail.value, this.$loginPassword.value);
+      this._firebaseServices.login(this.$loginEmail.value, this.$loginPassword.value);
     });
   }
 

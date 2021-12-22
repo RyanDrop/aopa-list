@@ -1,4 +1,5 @@
 import { HeaderMenuComponent } from "../../components/header-menu/header-menu.component";
+import { LoadingComponent } from "../../components/loading/loading.component";
 import { ProfileComponent } from "../../components/profile/profile.component";
 import { FirebaseServices } from "../../services/firebase.service";
 import HomePageStyle from "./home.page.scss";
@@ -9,25 +10,30 @@ export async function Home(): Promise<HTMLElement> {
 }
 
 export class HomePage extends HTMLElement {
-  private declarations = [HeaderMenuComponent, ProfileComponent];
+  private declarations = [HeaderMenuComponent, ProfileComponent, LoadingComponent];
   private customStyle = HomePageStyle;
-  private firebaseServices: FirebaseServices;
+  private _firebaseServices: FirebaseServices;
+
+  set firebaseServices(firebaseServices: FirebaseServices) {
+    this._firebaseServices = firebaseServices;
+  }
   constructor() {
     super();
-    this.firebaseServices = new FirebaseServices();
   }
   connectedCallback() {
-    this.innerHTML = `
-   <header>
-    <aopa-header-menu></aopa-header-menu>
-    <aopa-profile></aopa-profile>
-   </header>
-   `;
-    const $profile: ProfileComponent = this.querySelector("aopa-profile");
+    const $profile = document.createElement("aopa-profile") as ProfileComponent;
+    const $header = document.createElement("header");
+    const $headerMenu = document.createElement("aopa-header-menu") as HeaderMenuComponent;
 
-    this.firebaseServices.user$.subscribe(({ personal_information }) => {
+    this._firebaseServices.user$.subscribe(({ personal_information }) => {
+      if (!personal_information) window.location.href = "/?#log";
       const { name, occupation } = personal_information;
+      $headerMenu.firebaseService = this._firebaseServices;
+
       $profile.user = { name, occupation };
+      $header.appendChild($headerMenu);
+      $header.appendChild($profile);
+      this.appendChild($header);
     });
   }
 }

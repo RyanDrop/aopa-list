@@ -8,6 +8,9 @@ export class Observable<T> {
   unsubscribe(observer: Function) {
     this.observers = this.observers.filter((obs) => obs !== observer);
   }
+  unsubscribeAll() {
+    this.observers = [];
+  }
 
   publish(data: any) {
     this.observers.forEach((observer) => observer(data));

@@ -5,23 +5,27 @@ import headerMenuTemplate from "./header-menu.component.html";
 import headerMenuStyle from "./header-menu.component.scss";
 
 export class HeaderMenuComponent extends HTMLElement {
-  private firebaseServices: FirebaseServices;
+  private customStyle = headerMenuStyle;
+  private _firebaseServices: FirebaseServices;
   constructor() {
     super();
-    this.firebaseServices = new FirebaseServices();
+  }
+
+  set firebaseService(firebaseServices: FirebaseServices) {
+    this._firebaseServices = firebaseServices;
   }
   private $configIcon: HTMLImageElement;
   private $helpIcon: HTMLImageElement;
 
   connectedCallback(): void {
-    const style = headerMenuStyle;
     this.innerHTML = headerMenuTemplate;
     this.$configIcon = this.querySelector(".config-icon");
     this.$helpIcon = this.querySelector(".help-icon");
     this.$configIcon.src = configIconPath;
     this.$helpIcon.src = helpIconPath;
+
     this.$configIcon.addEventListener("click", () => {
-      this.firebaseServices.logout();
+      this._firebaseServices.logout();
       window.location.href = "/?#log";
     });
   }

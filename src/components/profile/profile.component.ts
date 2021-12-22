@@ -7,6 +7,7 @@ interface ProfileTemplate {
   occupation: string;
 }
 export class ProfileComponent extends HTMLElement {
+  private customStyle = profileStyle;
   constructor() {
     super();
   }
@@ -18,9 +19,7 @@ export class ProfileComponent extends HTMLElement {
     this.$defaultProfileImage.src = defaultProfileImage;
   }
 
-  connectedCallback(): void {
-    const style = profileStyle;
-  }
+  connectedCallback(): void {}
 
   bindModelToView(object: ProfileTemplate, template: string) {
     const objectEntries = Object.entries(object);

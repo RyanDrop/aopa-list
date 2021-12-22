@@ -18,7 +18,6 @@ interface User {
 export class FirebaseServices {
   public user$ = new Observable<User>();
 
-  public hasLogin$ = new Observable<boolean>();
   app: FirebaseApp;
   constructor() {
     const firebaseConfig = {
@@ -31,31 +30,25 @@ export class FirebaseServices {
       measurementId: "G-KG4NX23DEQ",
     };
     this.app = initializeApp(firebaseConfig);
-    this.hasLogin();
   }
 
-  getUser() {
+  async getUser() {
     const auth = getAuth();
     const db = getFirestore();
     const userDocReference = doc(db, "user_id", auth.currentUser.uid);
-    getDoc(userDocReference)
-      .then((doc) => {
-        const user = doc.data();
-        this.user$.publish(user);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    try {
+      const request = await getDoc(userDocReference);
+      const user = request.data();
+      this.user$.publish(user);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
-  private hasLogin(): void {
+  hasLogin(): void {
     const auth = getAuth();
-    this.hasLogin$.publish(false);
     onAuthStateChanged(auth, () => {
-      if (auth.currentUser) {
-        this.getUser();
-        this.hasLogin$.publish(true);
-      }
+      if (auth.currentUser) this.getUser();
     });
   }
 
@@ -78,8 +71,8 @@ export class FirebaseServices {
       .then(() => {
         this.registerDices(user);
       })
-      .catch(() => {
-        console.log("error.message");
+      .catch((error) => {
+        console.log(error.message);
       });
   }
 
@@ -90,8 +83,8 @@ export class FirebaseServices {
 
     try {
       await setDoc(userDocReference, user);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
   }
 
