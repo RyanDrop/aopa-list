@@ -1,0 +1,35 @@
+<div class="personal-information">
+  <h1>Personal Information</h1>
+  <div class="date">
+    <span>Name</span>
+    <h2 class="name">{{ name }}</h2>
+    <span>Occupation</span>
+    <h2 class="occupation">{{ occupation }}</h2>
+    <span>Gender</span>
+    <h2 class="gender">{{ gender }}</h2>
+    <span>Birthday</span>
+    <h2 class="birhday">{{ birthday }}</h2>
+  </div>
+    <button class="update-user">Update User</button>
+</div>
+<div class="preferences">
+  <h1>Preferences</h1>
+  <div>
+    <h2>Dark mode</h2>
+    <input type="checkbox" class="checkbox" id="dark-mode-checkbox" checked="{{ dark_mode }}" />
+    <label class="label" for="dark-mode-checkbox">
+      <img src="" class="moon-icon"></img>
+      <img src="" class="sun-icon"></img>
+      <div class="ball"></div>
+    </label>
+  </div>
+  <div>
+    <h2>Phrases</h2>
+    <input type="checkbox" class="checkbox" id="x" checked="{{ phrases_API }}" />
+    <label class="label" for="x">
+      <img src="" class="times-circle-icon"></img>
+      <img src="" class="check-circle-icon"></img>
+      <div class="ball"></div>
+    </label>
+  </div>
+</div>
