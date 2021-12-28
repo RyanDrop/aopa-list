@@ -1,7 +1,6 @@
+import defaultProfileImage from "../../assets/images/profile.png";
 import profileTemplate from "./profile.component.html";
 import profileStyle from "./profile.component.scss";
-import defaultProfileImage from "../../assets/images/profile.png";
-import { User } from "firebase/auth";
 interface ProfileTemplate {
   name: string;
   occupation: string;
@@ -13,6 +12,7 @@ export class ProfileComponent extends HTMLElement {
   }
 
   private $defaultProfileImage: HTMLImageElement;
+
   set user(user: ProfileTemplate) {
     this.innerHTML = this.bindModelToView(user, profileTemplate);
     this.$defaultProfileImage = this.querySelector(".profile-img img");

@@ -1,3 +1,5 @@
+import helpIconPath from "../../assets/icons/help.svg";
+import configIconPath from "../../assets/icons/settings.svg";
 import { HeaderMenuComponent } from "../../components/header-menu/header-menu.component";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { ProfileComponent } from "../../components/profile/profile.component";
@@ -17,6 +19,7 @@ export class HomePage extends HTMLElement {
   set firebaseServices(firebaseServices: FirebaseServices) {
     this._firebaseServices = firebaseServices;
   }
+
   constructor() {
     super();
   }
@@ -24,12 +27,19 @@ export class HomePage extends HTMLElement {
     const $profile = document.createElement("aopa-profile") as ProfileComponent;
     const $header = document.createElement("header");
     const $headerMenu = document.createElement("aopa-header-menu") as HeaderMenuComponent;
+    const $headerMenuTemplate = {
+      linkLeftAndClass: "help",
+      linkRight: "settings",
+      iconLeftSrc: helpIconPath,
+      iconRightSrc: configIconPath,
+      rightClass: "settings",
+    };
 
     this._firebaseServices.user$.subscribe(({ personal_information }) => {
       if (!personal_information) window.location.href = "/?#log";
       const { name, occupation } = personal_information;
       $headerMenu.firebaseService = this._firebaseServices;
-
+      $headerMenu.menu = $headerMenuTemplate;
       $profile.user = { name, occupation };
       $header.appendChild($headerMenu);
       $header.appendChild($profile);

@@ -1,12 +1,19 @@
-import helpIconPath from "../../assets/icons/help.svg";
-import configIconPath from "../../assets/icons/settings.svg";
 import { FirebaseServices } from "../../services/firebase.service";
 import headerMenuTemplate from "./header-menu.component.html";
 import headerMenuStyle from "./header-menu.component.scss";
 
+interface MenuTemplate {
+  linkLeftAndClass: string;
+  linkRight: string | void;
+  iconLeftSrc: string;
+  iconRightSrc: string;
+  rightClass: string;
+}
+
 export class HeaderMenuComponent extends HTMLElement {
-  private customStyle = headerMenuStyle;
   private _firebaseServices: FirebaseServices;
+  private customStyle = headerMenuStyle;
+
   constructor() {
     super();
   }
@@ -14,20 +21,22 @@ export class HeaderMenuComponent extends HTMLElement {
   set firebaseService(firebaseServices: FirebaseServices) {
     this._firebaseServices = firebaseServices;
   }
-  private $configIcon: HTMLImageElement;
-  private $helpIcon: HTMLImageElement;
 
-  connectedCallback(): void {
-    this.innerHTML = headerMenuTemplate;
-    this.$configIcon = this.querySelector(".config-icon");
-    this.$helpIcon = this.querySelector(".help-icon");
-    this.$configIcon.src = configIconPath;
-    this.$helpIcon.src = helpIconPath;
+  set menu(menu: MenuTemplate) {
+    this.innerHTML = this.bindModelToView(menu, headerMenuTemplate);
+  }
 
-    this.$configIcon.addEventListener("click", () => {
-      this._firebaseServices.logout();
-      window.location.href = "/?#log";
-    });
+  connectedCallback(): void {}
+
+  bindModelToView(object: MenuTemplate, template: string) {
+    const objectEntries = Object.entries(object);
+    const renderedTemplate = objectEntries.reduce((template, [key, value]) => {
+      const expression = new RegExp(`{{ *${key}* }}`, "g");
+      const replacedTemplate = template.replace(expression, value ?? "");
+      return replacedTemplate;
+    }, template);
+
+    return renderedTemplate;
   }
 }
 customElements.define("aopa-header-menu", HeaderMenuComponent);

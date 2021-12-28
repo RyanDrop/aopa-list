@@ -10,10 +10,16 @@ aopa-header-menu {
     text-decoration: none;
   }
   .settings img:hover {
-    animation: rotateSettings 0.8s 1;
+    animation: rotate-settings 0.8s 1;
   }
   .help img:hover {
-    animation: rotateHelp 1s 1;
+    animation: rotate-help 1s 1;
+  }
+  .sign-out img:hover {
+    animation: header-menu-scale 1s 1;
+  }
+  .home img:hover {
+    animation: header-menu-scale 1s 1;
   }
   img {
     width: 28px;

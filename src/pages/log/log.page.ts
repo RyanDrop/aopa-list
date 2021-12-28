@@ -32,7 +32,12 @@ export class LogPage extends HTMLElement {
       $welcome.remove();
       this.appendChild($logForm);
     });
+
     this.appendChild($welcome);
+  }
+
+  disconnectedCallback() {
+    this._firebaseServices.user$.unsubscribeAll();
   }
 }
 customElements.define("aopa-log-page", LogPage);
