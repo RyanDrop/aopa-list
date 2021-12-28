@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5"
+    "lib": ["es2020", "dom"],
+    "target": "es2019",
+    "experimentalDecorators": true
   },
   "typeRoots": ["node_modules/@types", "../src/typings.d.ts"],
 

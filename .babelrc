@@ -1,3 +1,11 @@
 {
-  "plugins": ["transform-html-import-to-string"]
+  "plugins": [
+    "transform-html-import-to-string",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ]
 }
