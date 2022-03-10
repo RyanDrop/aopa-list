@@ -1,0 +1,17 @@
+<mat-form-field appearance="fill" data-testid="mat-form-field-container">
+  <mat-label>{{ labelName }}</mat-label>
+  <input
+    [attr.data-testid]="inputTestID"
+    matInput
+    type="{{ typeInput }}"
+    placeholder="{{ placeholderInput }}"
+    [formControl]="control"
+    [errorStateMatcher]="errorStateMatcher"
+  />
+
+  <mat-error
+    aopaShowValidationError
+    [aopaShowValidationErrorControlName]="controlName"
+    data-testid="mat-error"
+  ></mat-error>
+</mat-form-field>

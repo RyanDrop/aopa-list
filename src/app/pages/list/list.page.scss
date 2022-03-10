@@ -1,0 +1,28 @@
+@import "colors";
+
+:host {
+  user-select: none;
+  color: var(--text-color);
+
+  mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+  }
+  aopa-header {
+    .mat-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+    h1 {
+      font-size: 24px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+  }
+}

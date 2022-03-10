@@ -1,0 +1,25 @@
+<aopa-header>
+  <mat-icon [routerLink]="'/'">home</mat-icon>
+  <h1>{{ currentList | titlecase }} list</h1>
+  <mat-icon [routerLink]="['/settings']">settings</mat-icon>
+</aopa-header>
+
+<mat-spinner *ngIf="!(listTasks$ | async)"></mat-spinner>
+
+<div [hidden]="!(listTasks$ | async)">
+  <aopa-input-task
+    [labelName]="'Task'"
+    (submitTask)="addTask($event)"
+    [placeholder]="'Ex. clean the room '"
+  ></aopa-input-task>
+
+  <aopa-task-progress
+    [tasksPercentage]="(tasksService.tasksPercentage$$ | async)!"
+    [currentStreak]="tasksService.currentStreak"
+  ></aopa-task-progress>
+
+  <aopa-display-tasks
+    [listTasks]="listTasks$ | async"
+    (checkboxChange)="tasksService.getPercentageTasks()"
+  ></aopa-display-tasks>
+</div>

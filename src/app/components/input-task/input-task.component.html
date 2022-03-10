@@ -1,0 +1,35 @@
+<mat-form-field appearance="fill">
+  <mat-label>{{ labelName }}</mat-label>
+  <input
+    #inputTask
+    data-testid="input-task"
+    matInput
+    autocomplete="off"
+    [formControl]="taskDescription"
+    [attr.maxlength]="maxLength"
+    [placeholder]="placeholder"
+    [value]="task ?? ''"
+    (keyup.enter)="
+      taskDescription.valid ? submitValue(taskDescription.value) : null
+    "
+  />
+
+  <mat-hint align="end"
+    >{{ inputTask.value.length }} / {{ maxLength }}</mat-hint
+  >
+
+  <mat-error
+    aopaShowValidationError
+    [aopaShowValidationErrorControl]="taskDescription"
+  >
+  </mat-error>
+</mat-form-field>
+
+<button
+  mat-raised-button
+  [disabled]="!taskDescription.valid"
+  (click)="submitValue(taskDescription.value)"
+  data-testid="submit-task"
+>
+  <mat-icon>done</mat-icon>
+</button>

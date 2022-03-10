@@ -1,0 +1,48 @@
+:root.dark-mode {
+  & mat-calendar {
+    background: var(--field-appearance-fill);
+  }
+}
+.mat-select-arrow {
+  color: var(--text-color);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  color: var(--text-color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text-color);
+}
+
+.mat-calendar-table-header,
+.mat-calendar-body-label {
+  color: var(--text-color);
+}
+.mat-calendar-body-cell-content,
+.mat-date-range-input-separator {
+  color: var(--text-color);
+}
+.mat-datepicker-content {
+  color: var(--text-color);
+}
+.mat-calendar-next-button::after,
+.mat-calendar-previous-button::after {
+  border-color: var(--text-color) !important;
+}
+.mat-calendar-arrow.mat-calendar-invert {
+  fill: var(--text-color);
+}
+
+.mat-select-panel,
+.mat-dialog-container {
+  background-color: var(--background-color);
+}
+.mat-option {
+  color: var(--text-color);
+}
+
+.mat-form-field-label,
+.mat-select-value {
+  color: var(--text-color);
+}

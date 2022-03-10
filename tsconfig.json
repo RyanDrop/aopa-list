@@ -1,11 +1,39 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "module": "commonjs",
-    "lib": ["es2020", "dom"],
-    "target": "es2019",
-    "experimentalDecorators": true
+    "baseUrl": "src",
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@aopa/components": ["app/components"],
+      "@aopa/directives": ["app/directives"],
+      "@aopa/validators": ["app/validators"],
+      "@aopa/shared": ["app/shared"],
+      "@aopa/mocks": ["app/mocks"],
+      "@aopa/models": ["app/models"],
+      "@aopa/pages": ["app/pages"],
+      "@aopa/pipes": ["app/pipes"],
+      "@aopa/services": ["app/services"]
+    },
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": ["es2018", "dom"]
   },
-  "typeRoots": ["node_modules/@types", "../src/typings.d.ts"],
-
-  "exclude": ["node_modules"]
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }

@@ -1,0 +1,69 @@
+@import "mixins";
+@import "variables";
+@import "colors";
+
+:host {
+  @include flex-center(column);
+  width: min(100vw, 800px);
+  margin: 0 auto;
+  padding: 10px 15px;
+  color: var(--text-color);
+
+  .no-task {
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin: 20px 0 0 0;
+  }
+
+  .mat-card-content {
+    @include flex-center(column);
+    width: min(100%, 800px);
+  }
+  .mat-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 14px 16px;
+    background-color: var(--form-field);
+    color: var(--text-color);
+    p {
+      width: 100%;
+      text-align: left;
+      margin: 2px 0px 0px 0px;
+      font-family: $primary-font;
+      transition: text-decoration 0.2s ease-in-out;
+      word-break: break-word;
+      &.checked {
+        text-decoration: line-through;
+        text-decoration-color: var(--primary);
+      }
+    }
+    ::ng-deep .mat-checkbox-inner-container-no-side-margin {
+      margin-right: 6px !important;
+    }
+    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: $blue;
+      border-color: var(--text-color);
+    }
+    ::ng-deep .mat-checkbox-frame {
+      border-color: var(--text-color);
+    }
+
+    .mat-button {
+      min-width: 0px;
+      padding: 0px 4px;
+    }
+    mat-icon {
+      font-size: 20px;
+      @include flex-center(column);
+
+      cursor: pointer;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+}

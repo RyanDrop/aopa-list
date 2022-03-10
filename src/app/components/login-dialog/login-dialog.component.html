@@ -1,0 +1,35 @@
+<form [formGroup]="dialogForm">
+  <h1>Authenticate With Credential</h1>
+  <aopa-form-input
+    data-testid="dialog-login-input"
+    [inputTestID]="'dialog-email-input'"
+    [labelName]="'Email'"
+    [typeInput]="'email'"
+    [placeholderInput]="'Ex. pat@example.com'"
+    [control]="emailFormControl"
+    [errorStateMatcher]="matcher"
+    [controlName]="'email'"
+  ></aopa-form-input>
+  <aopa-form-input
+    data-testid="dialog-login-password"
+    [inputTestID]="'dialog-password-input'"
+    [labelName]="'Password'"
+    [typeInput]="'password'"
+    [placeholderInput]="'Type your password'"
+    [control]="passwordFormControl"
+    [errorStateMatcher]="matcher"
+    [controlName]="'password'"
+  ></aopa-form-input>
+
+  <button
+    data-testid="dialog-submit-button"
+    mat-raised-button
+    (click)="submitForm()"
+    [disabled]="!dialogForm.valid"
+  >
+    Save
+  </button>
+  <button data-testid="dialog-cancel-button" mat-raised-button mat-dialog-close>
+    Cancel
+  </button>
+</form>

@@ -1,0 +1,35 @@
+@import "mixins";
+@import "colors";
+
+:host {
+  @include flex-center;
+  width: min(100%, 800px);
+  margin: 0 auto;
+  padding: 0px 15px;
+  color: var(--text-color);
+  form {
+    @include flex-center;
+    width: 100%;
+  }
+  .mat-form-field {
+    width: 100%;
+    margin: 15px 15px 0 0;
+  }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: var(--form-field);
+  }
+  .mat-hint {
+    color: var(--text-color);
+  }
+  .mat-raised-button {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    height: 51px;
+    margin-bottom: 5px;
+    &:disabled {
+      background-color: var(--button-disabled-background-color);
+      color: var(--button-disabled-text-color);
+      cursor: not-allowed;
+    }
+  }
+}

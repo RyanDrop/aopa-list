@@ -1,0 +1,13 @@
+:host {
+  ::ng-deep mat-form-field {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  button {
+    margin: 5px;
+  }
+}
