@@ -1,0 +1,46 @@
+@import "./../../../../../styles.scss";
+
+:host {
+  .content {
+    @include flex-center(column);
+    mat-tab-group {
+      color: var(--text-color);
+      z-index: 1;
+      overflow: hidden;
+      width: 350px;
+      margin: 10px 0 25px 0;
+    }
+    ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+      background-color: var(--white);
+    }
+    ::ng-deep .mat-tab-label .mat-tab-label-content {
+      color: var(--white);
+    }
+
+    ::ng-deep .mat-tab-header {
+      border-bottom: 0px;
+      margin-bottom: 10px;
+    }
+    form {
+      @include flex-center(column);
+    }
+
+    mat-form-field {
+      background-color: var(--white);
+    }
+
+    button {
+      background-color: white;
+      width: 201px;
+      color: var(--text-color);
+      &:hover {
+        background-color: var(--blue);
+        color: var(--white);
+      }
+      &:disabled {
+        background-color: rgb(211, 211, 211);
+        color: var(--text-color);
+      }
+    }
+  }
+}
