@@ -42,8 +42,6 @@ export class FirebaseService {
       name: user.name,
       email: user.email,
       occupation: user.occupation,
-      gender: user.gender,
-      birthday: user.birthday,
       darkThemePreference: false,
       phrasePreference: true,
       tasks: {

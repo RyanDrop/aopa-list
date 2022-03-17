@@ -78,12 +78,10 @@ export class SettingsPage implements OnInit {
       .subscribe((details: UserDetails) => {
         const name = details.user.name;
         const email = details.firebaseUser.email as string;
-        const birthday = details.user.birthday;
-        const gender = details.user.gender;
         const occupation = details.user.occupation;
         this.darkThemePreference = details.user.darkThemePreference;
         this.phrasePreference = details.user.phrasePreference;
-        this.createForm(name, email, birthday, gender, occupation);
+        this.createForm(name, email, occupation);
         this.toggleDarkMode();
       });
   }
@@ -97,11 +95,8 @@ export class SettingsPage implements OnInit {
   private createForm(
     userName: string,
     userEmail: string,
-    userBirthday: string,
-    userGender: string,
     userOccupation: string
   ) {
-    const date = new Date(userBirthday);
     this.settingsForm = new FormGroup({
       name: new FormControl(userName, [
         Validators.required,
@@ -111,8 +106,6 @@ export class SettingsPage implements OnInit {
         Validators.required,
         Validators.email,
       ]),
-      gender: new FormControl(userGender, [Validators.required]),
-      birthday: new FormControl(date, [Validators.required]),
       occupation: new FormControl(userOccupation, [Validators.required]),
     });
   }

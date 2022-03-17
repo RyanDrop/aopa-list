@@ -5,8 +5,6 @@ export interface AopaUser {
   name: string;
   email: string;
   occupation: string;
-  gender: string;
-  birthday: string;
   darkThemePreference: boolean;
   phrasePreference: boolean;
   tasks: TaskData;
@@ -24,8 +22,6 @@ export interface RegisterUser {
   name: string;
   occupation: string;
   email: string;
-  gender: 'Male' | 'Female' | 'Other';
-  birthday: string;
   password: string;
 }
 
