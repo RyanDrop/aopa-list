@@ -1,0 +1,11 @@
+<div class="card" [style]="area">
+  <div class="circle"></div>
+  <div class="content">
+    <ng-content ngProjectAs="[text]"></ng-content>
+  </div>
+  <img
+    [class.displayNone]="displayNone"
+    src="./../../../assets/list.png"
+    alt="logo"
+  />
+</div>
