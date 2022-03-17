@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "override-material";
-@import "reset";
-@import "colors";
+@import "scss/override-material";
+@import "scss/reset";
+@import "scss/colors";
+@import "scss/mixins";
+@import "scss/keyframes";
+
 html,
 body {
   height: 100%;
