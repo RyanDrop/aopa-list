@@ -1,0 +1,67 @@
+@import "variables";
+
+:host {
+  user-select: none;
+  min-width: 150px;
+  max-width: $input-max-width;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+::ng-deep mat-form-field {
+  width: 100%;
+}
+
+::ng-deep input.mat-input-element {
+  color: var(--text-color);
+  &::placeholder {
+    color: var(--text-color);
+  }
+}
+
+::ng-deep
+  .mat-form-field-appearance-fill.mat-form-field-disabled
+  .mat-form-field-label,
+::ng-deep .mat-input-element:disabled {
+  color: var(--text-color);
+  transition: color 0.5s;
+  font-weight: 500;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: var(--field-appearance-fill);
+}
+
+::ng-deep
+  .mat-form-field-appearance-fill.mat-form-field-disabled
+  .mat-form-field-flex {
+  background-color: var(--form-field);
+}
+
+::ng-deep mat-datepicker-toggle svg {
+  fill: var(--text-color);
+}
+::ng-deep
+  .mat-form-field-appearance-fill.mat-form-field-disabled
+  .mat-form-field-flex,
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 12px !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--underline) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--underline);
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--underline);
+}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: var(--primary);
+}
