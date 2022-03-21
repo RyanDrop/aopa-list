@@ -13,10 +13,7 @@ import { CustomValidators } from '@aopa/validators';
 export class LogInPage implements OnInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
-  area = {
-    height: 'auto',
-    width: '440px',
-  };
+
   constructor(
     private firebase: FirebaseService,
     private readonly router: Router
@@ -95,7 +92,7 @@ export class LogInPage implements OnInit {
 
   login() {
     this.firebase.login(this.loginEmail.value, this.loginPassword.value);
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   register() {
@@ -105,6 +102,6 @@ export class LogInPage implements OnInit {
       email: this.registerEmail.value,
       password: this.registerPassword.value,
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 }

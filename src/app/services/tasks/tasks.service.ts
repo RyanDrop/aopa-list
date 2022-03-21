@@ -53,7 +53,6 @@ export class TasksService {
   }
 
   addTask(taskDescription: string): void {
-    console.log(this.tasks);
     this.tasks.push({
       id: this.taskData.currentId,
       description: taskDescription,

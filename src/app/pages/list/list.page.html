@@ -1,9 +1,3 @@
-<aopa-header>
-  <mat-icon [routerLink]="'/'">home</mat-icon>
-  <h1>{{ currentList | titlecase }} list</h1>
-  <mat-icon [routerLink]="['/settings']">settings</mat-icon>
-</aopa-header>
-
 <mat-spinner *ngIf="!(listTasks$ | async)"></mat-spinner>
 
 <div [hidden]="!(listTasks$ | async)">

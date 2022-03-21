@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class WelcomePage {
   area = {
-    height: '420px',
-    width: '490px',
+    height: '375px',
+    width: '520px',
   };
 }
