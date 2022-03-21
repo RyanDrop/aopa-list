@@ -1,0 +1,51 @@
+@import "./../../../../../styles.scss";
+:host {
+  user-select: none;
+  color: var(--text-color);
+  aopa-header {
+    margin: 0 auto;
+    padding: 15px;
+    mat-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .profile {
+      @include flex-center;
+      .profile-image {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        background-color: white;
+        border: 3px solid gray;
+        margin-right: 10px;
+        img {
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+      .profile-info {
+        margin-left: 10px;
+        h1 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        p {
+          font-size: 14px;
+          font-weight: normal;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .task-mode {
+    padding: 15px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
+}

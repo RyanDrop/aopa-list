@@ -1,0 +1,38 @@
+<aopa-header>
+  <mat-icon>help</mat-icon>
+  <div class="profile">
+    <div class="profile-image">
+      <img src="./../../../assets/profile.png" />
+    </div>
+    <div class="profile-info">
+      <h1>{{name}}</h1>
+      <p>{{occupation}}</p>
+    </div>
+  </div>
+  <mat-icon class="settings" [routerLink]="'/settings'">settings</mat-icon>
+</aopa-header>
+
+<div class="task-mode">
+  <h1>Task Mode</h1>
+  <aopa-select-list-mode
+    [icon]="'today'"
+    [router]="'/list/today'"
+    [listMode]="'Today List'"
+    [listModeStatus]="'Active'"
+    [backgroundIcon]="'#ffc107'"
+  ></aopa-select-list-mode>
+  <aopa-select-list-mode
+    [icon]="'date_range'"
+    [router]="'/list/week'"
+    [listMode]="'Week List'"
+    [listModeStatus]="'Active'"
+    [backgroundIcon]="'red'"
+  ></aopa-select-list-mode>
+  <aopa-select-list-mode
+    [icon]="'mode_standby'"
+    [router]="'/'"
+    [listMode]="'Goals'"
+    [listModeStatus]="' Active'"
+    [backgroundIcon]="'green'"
+  ></aopa-select-list-mode>
+</div>
