@@ -1,0 +1,146 @@
+<aopa-header>
+  <mat-icon [routerLink]="['/home']">home</mat-icon>
+  <h1>Settings</h1>
+  <mat-icon (click)="logoff()">logout</mat-icon>
+</aopa-header>
+
+<mat-spinner *ngIf="!settingsForm"></mat-spinner>
+
+<form [formGroup]="settingsForm" data-testid="form-group" *ngIf="settingsForm">
+  <h1>Personal Information</h1>
+  <aopa-edit-in-place
+    [outsideElements]="editInPlaceOutsideElements"
+    [ignoreElements]="editInPlaceIgnoreElements"
+    (update)="updateIsEditing($event)"
+  >
+    <ng-template #aopaViewMode>
+      <!-- <aopa-view-input
+        data-testid="name-view-input"
+        [labelName]="'Name'"
+        [inputTestID]="'name-form-view-input'"
+        [control]="nameControl"
+      ></aopa-view-input> -->
+    </ng-template>
+
+    <ng-template #aopaEditMode>
+      <aopa-form-input
+        data-testid="name-input"
+        [inputTestID]="'name-form-input'"
+        [labelName]="'Name'"
+        [typeInput]="'text'"
+        [placeholderInput]="'Ex. Marcelo'"
+        [control]="nameControl"
+        [controlName]="'name'"
+        [errorStateMatcher]="matcher"
+      ></aopa-form-input>
+    </ng-template>
+  </aopa-edit-in-place>
+
+  <aopa-edit-in-place
+    [outsideElements]="editInPlaceOutsideElements"
+    [ignoreElements]="editInPlaceIgnoreElements"
+    (update)="updateIsEditing($event)"
+  >
+    <ng-template #aopaViewMode>
+      <!-- <aopa-view-input
+        data-testid="occupation-view-input"
+        [labelName]="'Occupation'"
+        [inputTestID]="'occupation-form-view-input'"
+        [control]="occupationControl"
+      ></aopa-view-input> -->
+    </ng-template>
+
+    <ng-template #aopaEditMode>
+      <aopa-form-input
+        data-testid="occupation-input"
+        [inputTestID]="'occupation-form-input'"
+        [labelName]="'Occupation'"
+        [typeInput]="'text'"
+        [placeholderInput]="'Ex. FrontEnd Developer'"
+        [control]="occupationControl"
+        [controlName]="'occupation'"
+        [errorStateMatcher]="matcher"
+      ></aopa-form-input>
+    </ng-template>
+  </aopa-edit-in-place>
+
+  <aopa-edit-in-place
+    [outsideElements]="editInPlaceOutsideElements"
+    [ignoreElements]="editInPlaceIgnoreElements"
+    (update)="updateIsEditing($event)"
+  >
+    <ng-template #aopaViewMode>
+      <!-- <aopa-view-input
+        data-testid="email-view-input"
+        [inputTestID]="'email-form-view-input'"
+        [labelName]="'Email'"
+        [control]="emailControl"
+      ></aopa-view-input> -->
+    </ng-template>
+
+    <ng-template #aopaEditMode>
+      <aopa-form-input
+        data-testid="email-input"
+        [inputTestID]="'email-form-input'"
+        [labelName]="'Email'"
+        [typeInput]="'email'"
+        [placeholderInput]="'Ex. pat@example.com'"
+        [control]="emailControl"
+        [errorStateMatcher]="matcher"
+        [controlName]="'email'"
+      ></aopa-form-input>
+    </ng-template>
+  </aopa-edit-in-place>
+
+  <div class="editing container" data-testid="editing-container">
+    <div class="editing" *ngIf="isEditing" [@fadeInOut]>
+      <div class="form-status">
+        <ng-container
+          *ngIf="settingsForm.valid || submitted ; else invalidForm"
+        >
+          <h1 class="valid">This forms is valid</h1>
+          <mat-icon class="done">done</mat-icon>
+        </ng-container>
+        <ng-template #invalidForm>
+          <h1>This forms <strong>is invalid</strong></h1>
+          <mat-icon class="error">error_outline</mat-icon>
+        </ng-template>
+      </div>
+      <button
+        data-testid="submit-form-button"
+        *ngIf="settingsForm.dirty"
+        mat-raised-button
+        [disabled]="!settingsForm.valid"
+        (click)="submitForm()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+
+  <h2>Preferences</h2>
+
+  <div class="option">
+    DarkMode
+    <mat-slide-toggle
+      data-testid="dark-mode-button"
+      (change)="updatePreference($event)"
+      [checked]="darkThemePreference"
+    >
+      <mat-icon class="moon">dark_mode</mat-icon>
+      <mat-icon class="sunny">wb_sunny</mat-icon>
+    </mat-slide-toggle>
+  </div>
+
+  <div class="option">
+    Phrases
+    <mat-slide-toggle
+      data-testid="phraseModeButton"
+      (change)="updatePreference($event)"
+      [checked]="phrasePreference"
+    >
+      <mat-icon class="done">done</mat-icon>
+      <mat-icon class="close">close</mat-icon>
+    </mat-slide-toggle>
+  </div>
+</form>

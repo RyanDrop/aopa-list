@@ -1,0 +1,11 @@
+@import "./../../../../styles.scss";
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary);
+  font-family: "Poppins", sans-serif;
+  height: 120px;
+  border-radius: 0px 0px 25px 25px;
+  max-width: 1920px;
+}
