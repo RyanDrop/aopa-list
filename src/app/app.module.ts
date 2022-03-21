@@ -31,36 +31,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DisplayTasksComponent } from './components/display-tasks/display-tasks.component';
 import { EditTaskMatDialogComponent } from './components/display-tasks/edit-task-mat-dialog/edit-task-mat-dialog.component';
-import { EditInPlaceComponent } from './components/edit-in-place/edit-in-place.component';
-import { FormInput } from './components/form-input/form-input.component';
-import { HeaderComponent } from './components/header/header.component';
 import { InputTaskComponent } from './components/input-task/input-task.component';
-import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { TaskProgressComponent } from './components/task-progress/task-progress.component';
-import { ViewInputComponent } from './components/view-input/view-input.component';
 import { ShowValidationErrorDirective } from './directives/show-validation-error/show-validation-error.directive';
 import { ListPage } from './pages/list/list.page';
-import { SettingsPage } from './pages/settings/settings.page';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 import { UpperFirstLetterPipe } from './pipes/upper-first-letter/upper-first-letter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SettingsPage,
-    HeaderComponent,
-    FormInput,
     SafeHtmlPipe,
-    ViewInputComponent,
-    EditInPlaceComponent,
     ShowValidationErrorDirective,
-    LoginDialogComponent,
     ListPage,
     TaskProgressComponent,
     InputTaskComponent,
     DisplayTasksComponent,
     EditTaskMatDialogComponent,
     UpperFirstLetterPipe,
+    ShowValidationErrorDirective,
   ],
 
   imports: [
