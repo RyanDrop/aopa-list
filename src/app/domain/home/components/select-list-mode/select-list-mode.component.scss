@@ -1,0 +1,37 @@
+@import "./../../../../../styles.scss";
+
+:host {
+  .mode-list {
+    display: flex;
+    align-items: center;
+    margin: 0 0 15px 0;
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    color: var(--text-color);
+    &:hover {
+      transform: scale(1.1);
+    }
+    .icon {
+      @include flex-center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .info {
+      height: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      h1 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+  }
+}
