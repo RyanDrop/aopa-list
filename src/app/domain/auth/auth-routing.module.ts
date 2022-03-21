@@ -18,7 +18,10 @@ const routes: Routes = [
         path: 'welcome',
         component: WelcomePage,
       },
-      { path: 'log-in', component: LogInPage },
+      {
+        path: 'log-in',
+        component: LogInPage,
+      },
     ],
   },
 ];
