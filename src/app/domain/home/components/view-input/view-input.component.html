@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill" data-testid="edit-in-place-entry">
+  <mat-label>{{ labelName }}</mat-label>
+  <input
+    [attr.data-testid]="inputTestID"
+    matInput
+    disabled
+    readonly
+    [value]="control.value"
+  />
+</mat-form-field>
