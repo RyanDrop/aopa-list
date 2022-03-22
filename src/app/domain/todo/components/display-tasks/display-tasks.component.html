@@ -1,0 +1,14 @@
+<!-- <p class="no-task" *ngIf="listTasks.length === 0">There are no tasks!</p> -->
+<mat-card-content *ngFor="let task of listTasks">
+  <mat-card>
+    <mat-checkbox
+      [checked]="task.status"
+      (change)="checkboxStatus($event, task)"
+    ></mat-checkbox>
+
+    <p [class.checked]="task.status">{{ task.description }}</p>
+    <button mat-button (click)="openDialog(task)">
+      <mat-icon>mode_edit_outline</mat-icon>
+    </button>
+  </mat-card>
+</mat-card-content>
