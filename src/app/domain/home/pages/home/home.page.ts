@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '@aopa/services';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { take } from 'rxjs/operators';
+import { FirebaseService } from './../../../../shared/firebase';
 
 @Component({
   selector: 'aopa-home',

@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { AOPA_TEST_USER } from '@aopa/mocks';
-import { AopaUser, FirebaseService, UserDetails } from '@aopa/services';
 import { FADE_IN_OUT } from '@aopa/shared';
 import { CustomValidators } from '@aopa/validators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -12,6 +10,11 @@ import { from } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { OutsideElements } from '../../components/edit-in-place/edit-in-place.component';
 import { LoginDialogComponent } from '../../components/login-dialog/login-dialog.component';
+import {
+  AopaUser,
+  FirebaseService,
+  UserDetails,
+} from './../../../../shared/firebase';
 
 @Component({
   selector: 'aopa-settings',
@@ -41,7 +44,6 @@ export class SettingsPage implements OnInit {
   isEditing: boolean;
   settingsForm: FormGroup;
   matcher = new ErrorStateMatcher();
-  readonly START_DATE = new Date('01/01/2010');
 
   constructor(private firebase: FirebaseService, private dialog: MatDialog) {}
 
@@ -67,13 +69,6 @@ export class SettingsPage implements OnInit {
 
   ngOnInit(): void {
     this.firebase.hasLogin();
-    this.firebase.hasUser$
-      .pipe(take(1), untilDestroyed(this))
-      .subscribe((boolean) => {
-        if (boolean) return;
-        this.firebase.login(AOPA_TEST_USER.email, AOPA_TEST_USER.password);
-      });
-
     this.firebase.user$
       .pipe(take(1), untilDestroyed(this))
       .subscribe((details: UserDetails) => {
@@ -86,12 +81,6 @@ export class SettingsPage implements OnInit {
         this.toggleDarkMode();
       });
   }
-
-  availableDatesFn = (date: Date | null): boolean => {
-    const minimumYear = this.START_DATE.getFullYear();
-    const currentYear = date?.getFullYear() ?? 0;
-    return currentYear <= minimumYear;
-  };
 
   private createForm(
     userName: string,
@@ -132,7 +121,6 @@ export class SettingsPage implements OnInit {
   submitForm() {
     if (!this.settingsForm.valid) return;
     const formValue = this.settingsForm.value;
-    formValue.birthday = formValue.birthday.toISOString();
     if (formValue.email) return this.updateEmail(formValue);
     this.updateUser(formValue);
   }

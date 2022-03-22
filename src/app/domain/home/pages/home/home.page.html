@@ -16,18 +16,20 @@
   <h1>Task Mode</h1>
   <aopa-select-list-mode
     [icon]="'today'"
-    [router]="'/list/today'"
+    [router]="'/todo/list/today'"
     [listMode]="'Today List'"
     [listModeStatus]="'Active'"
     [backgroundIcon]="'#ffc107'"
   ></aopa-select-list-mode>
+
   <aopa-select-list-mode
     [icon]="'date_range'"
-    [router]="'/list/week'"
+    [router]="'/todo/list/week'"
     [listMode]="'Week List'"
     [listModeStatus]="'Active'"
     [backgroundIcon]="'red'"
   ></aopa-select-list-mode>
+
   <aopa-select-list-mode
     [icon]="'mode_standby'"
     [router]="'/'"
