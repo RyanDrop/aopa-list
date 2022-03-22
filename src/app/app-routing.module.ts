@@ -5,10 +5,8 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
-import { ListPage } from './pages/list/list.page';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['auth']);
-
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
@@ -24,7 +22,12 @@ const routes: Routes = [
     loadChildren: async () =>
       (await import('./domain/auth/auth.domain.module')).AuthDomainModule,
   },
-  { path: 'list/:mode', component: ListPage },
+  {
+    path: 'todo',
+    ...canActivate(redirectUnauthorizedToLogin),
+    loadChildren: async () =>
+      (await import('./domain/todo/todo.domain.module')).TodoListDomainModule,
+  },
 ];
 
 @NgModule({
