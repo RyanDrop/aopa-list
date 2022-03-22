@@ -1,0 +1,39 @@
+@import "../../../../../styles.scss";
+:host {
+  display: flex;
+  justify-content: space-between;
+  width: min(100%, 800px);
+  user-select: none;
+  padding: 10px 15px;
+  margin: 0 auto;
+  color: var(--text-color);
+
+  .task-percentage {
+    width: 150px;
+    margin-right: 5px;
+    @include flex-center(column);
+    ::ng-deep .mat-progress-bar-fill::after {
+      background-color: var(--primary);
+    }
+    h1 {
+      margin: 0;
+
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
+
+  .count-streak {
+    min-width: 150px;
+    border: 3px solid var(--primary);
+    @include flex-center;
+    padding: 3px 5px;
+    border-radius: 7px;
+    p {
+      margin: 0;
+      font-weight: 600;
+
+      font-size: 15px;
+    }
+  }
+}
