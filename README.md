@@ -145,76 +145,20 @@ $ ng serve --open ou ng s -o
 
 ---
 
-## :boy: **Autores**
+## :boy: _Autor_
 
 <div align="center">
 
-Desenvolvido com ❤️ por
+<a href="https://github.com/RyanDrop">
+ <img src="https://avatars.githubusercontent.com/u/82955110?s=96&v=4"  width="100px;" alt="Profile Photo Ryan Drop"/>
+ <br/>
+ <sub><b>RyanDrop</b></sub>
+</a>
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://PORTFOLIOURL.COM">
-        <img src="https://avatars.githubusercontent.com/u/48810597?s=96&v=4" width="100px;" alt="Image Profile Gleison"/><br />
-        <sub><b>Gleison Almeida</b></sub>
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/gleison-ribeiro-a65257119" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/gleisonkz" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-      <a href="https://www.facebook.com/gleisonKZ" title="Facebook"><img src="https://simpleicons.org/icons/facebook.svg" width="20px"/></a>
-    </td>
-    <td align="center">
-      <a href="https://PORTFOLIOURL.COM">
-        <img src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4" width="100px;" alt="Image Profile NAME CONTRIBUTOR"/><br />
-        <sub><b>Cristhian Santos</b></sub>
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/CONTRIBUTORNAME" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/CristhianFSantos" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-      <a href="https://www.facebook.com/CONTRIBUTORNAME" title="Facebook"><img src="https://simpleicons.org/icons/facebook.svg" width="20px"/></a>      
-    </td>
-    <td align="center">
-      <a href="https://github.com/Joaovitorsw">
-        <img src="https://avatars.githubusercontent.com/u/86388366?s=400&u=d21331492a58a33c31dd248c2cac51f177622ae2&v=4" width="100px;" alt="Image Profile NAME CONTRIBUTOR"/><br />
-        <sub><b>João Vitor Pereira </b></sub>
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/joao-vitor-pereira-dos-santos/" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/Joaovitorsw" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://PORTFOLIOURL.COM">
-        <img src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4" width="100px;" alt="Image Profile NAME CONTRIBUTOR"/><br />
-        <sub><b>Jorge Vitor</b></sub>
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/CONTRIBUTORNAME" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/CONTRIBUTORNAME" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-      <a href="https://www.facebook.com/CONTRIBUTORNAME" title="Facebook"><img src="https://simpleicons.org/icons/facebook.svg" width="20px"/></a>
-    </td>
-    <td align="center">
-      <a href="https://PORTFOLIOURL.COM">
-        <img src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4" width="100px;" alt="Image Profile NAME CONTRIBUTOR"/><br />        
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/CONTRIBUTORNAME" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/CONTRIBUTORNAME" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-      <a href="https://www.facebook.com/CONTRIBUTORNAME" title="Facebook"><img src="https://simpleicons.org/icons/facebook.svg" width="20px"/></a>
-    </td>
-    <td align="center">
-      <a href="https://PORTFOLIOURL.COM">
-        <img src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4" width="100px;" alt="Image Profile NAME CONTRIBUTOR"/><br />
-        <sub><b>Ryan Drop</b></sub>
-      </a>
-      <br/>
-      <a href="https://www.linkedin.com/in/CONTRIBUTORNAME" title="LinkedIn"><img src="https://simpleicons.org/icons/linkedin.svg" width="20px"/></a>
-      <a href="https://github.com/CONTRIBUTORNAME" title="GitHub"><img src="https://simpleicons.org/icons/github.svg" width="20px"/></a>
-      <a href="https://www.facebook.com/CONTRIBUTORNAME" title="Facebook"><img src="https://simpleicons.org/icons/facebook.svg" width="20px"/></a>
-    </td>
-  </tr>
-</table>
+Desenvolvido com ❤️ por RyanDrop 👋🏽 Meus Contatos!
+
+[![Linkedin Badge](https://img.shields.io/badge/-RyanDrop-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ryan-nascimento-7204a4217/)
+[![Github Badge](https://img.shields.io/badge/-RyanDrop-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/RyanDrop)
 
 </div>
 
