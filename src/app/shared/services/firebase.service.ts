@@ -115,3 +115,16 @@ export class FirebaseService {
 
 
 }
+  logoff() {
+    const observable$ = defer(() => {
+      return this.auth.signOut();
+    }).pipe(
+      tap(() => {
+        this.toast.success(FirebaseToastMessage.USER_LOGGED_OUT);
+      })
+    );
+
+    return observable$;
+  }
+}
+
