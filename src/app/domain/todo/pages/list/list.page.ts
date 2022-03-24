@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { KeyLists } from 'app/domain/todo/services/tasks/task.service.models';
 import { TasksService } from 'app/domain/todo/services/tasks/tasks.service';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { FirebaseService } from './../../../../shared/firebase';
+import { FirebaseService } from 'app/shared/services/firebase.service';
+import { from, Observable } from 'rxjs';
 import { Task } from './../../services/tasks/task.service.models';
+
 
 @UntilDestroy()
 @Component({
@@ -21,21 +21,19 @@ export class ListPage implements OnInit {
     private firebase: FirebaseService,
     public tasksService: TasksService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.firebase.hasLogin();
-    this.firebase.user$
-      .pipe(take(1), untilDestroyed(this))
-      .subscribe((details) => {
-        const darkTheme = details.user.darkThemePreference;
-        this.toggleDarkTheme(darkTheme);
-      });
+    const aopaUser = from(this.firebase.getUser())
+    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
+      if (user.darkThemePreference) {
+        document.documentElement.classList.add('dark-mode')
+      }
+    })
 
     this.route.params
       .pipe(untilDestroyed(this))
       .subscribe((params) => (this.currentList = params.mode));
-
     this.tasksService.setTasks(this.currentList);
   }
 
@@ -46,14 +44,5 @@ export class ListPage implements OnInit {
   addTask(taskDescription: string) {
     this.tasksService.addTask(taskDescription);
     this.tasksService.getPercentageTasks();
-  }
-
-  toggleDarkTheme(darkTheme: boolean): void {
-    const $html = document.documentElement;
-    if (darkTheme) {
-      $html.classList.add('dark-mode');
-      return;
-    }
-    $html.classList.remove('dark-mode');
   }
 }

@@ -11,18 +11,40 @@
     }
 
     .profile {
+      animation: fadeIn 1s ease-in-out;
       @include flex-center;
       .profile-image {
         height: 90px;
+        @include flex-center;
         width: 90px;
         border-radius: 50%;
         background-color: white;
         border: 3px solid gray;
         margin-right: 10px;
+        cursor: pointer;
+
         img {
           height: 100%;
           width: 100%;
           border-radius: 50%;
+          transition: opacity 0.5s ease-in-out;
+        }
+        mat-icon {
+          display: none;
+          font-size: 20px;
+          transition: opacity 0.5s ease-in-out;
+        }
+        &:hover {
+          img {
+            opacity: 0.2;
+          }
+          mat-icon {
+            color: var(--black);
+            margin: 5px 0px 0px 5px;
+            animation: fadeIn 0.5s ease-in-out;
+            display: block;
+            position: absolute;
+          }
         }
       }
       .profile-info {
@@ -41,11 +63,14 @@
   }
   .task-mode {
     padding: 15px;
+  }
 
-    h1 {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+  .projects {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
   }
 }

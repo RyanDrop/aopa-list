@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Router } from '@angular/router';
 import { FADE_IN_OUT } from '@aopa/shared';
 import { CustomValidators } from '@aopa/validators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FirebaseService } from 'app/shared/services/firebase.service';
+import { AopaUser } from 'app/shared/services/firebase.service.models';
 import { from } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { OutsideElements } from '../../components/edit-in-place/edit-in-place.component';
 import { LoginDialogComponent } from '../../components/login-dialog/login-dialog.component';
-import {
-  AopaUser,
-  FirebaseService,
-  UserDetails,
-} from './../../../../shared/firebase';
+
 
 @Component({
   selector: 'aopa-settings',
@@ -45,7 +45,7 @@ export class SettingsPage implements OnInit {
   settingsForm: FormGroup;
   matcher = new ErrorStateMatcher();
 
-  constructor(private firebase: FirebaseService, private dialog: MatDialog) {}
+  constructor(private firebase: FirebaseService, private dialog: MatDialog, private auth: Auth, private route: Router) { }
 
   get nameControl(): FormControl {
     return this.settingsForm.controls.name as FormControl;
@@ -68,23 +68,22 @@ export class SettingsPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firebase.hasLogin();
-    this.firebase.user$
-      .pipe(take(1), untilDestroyed(this))
-      .subscribe((details: UserDetails) => {
-        const name = details.user.name;
-        const email = details.firebaseUser.email as string;
-        const occupation = details.user.occupation;
-        this.darkThemePreference = details.user.darkThemePreference;
-        this.phrasePreference = details.user.phrasePreference;
-        this.createForm(name, email, occupation);
-        this.toggleDarkMode();
-      });
+    const aopaUser = from(this.firebase.getUser())
+    aopaUser.pipe(untilDestroyed(this)).subscribe((user: AopaUser) => {
+      const name = user.name;
+      const email = this.auth.currentUser!.email
+      const occupation = user.occupation;
+      this.darkThemePreference = user.darkThemePreference;
+      this.phrasePreference = user.phrasePreference;
+      this.createForm(name, email, occupation);
+      this.toggleDarkMode();
+    });
+
   }
 
   private createForm(
     userName: string,
-    userEmail: string,
+    userEmail: string | null,
     userOccupation: string
   ) {
     this.settingsForm = new FormGroup({
@@ -112,9 +111,9 @@ export class SettingsPage implements OnInit {
   }
 
   logoff() {
-    this.firebase.logout();
-    this.firebase.logout$.pipe(take(1), untilDestroyed(this)).subscribe(() => {
-      setTimeout(() => (window.location.href = ''), 600);
+    this.firebase.logoff().subscribe(() => {
+      this.route.navigate(['/auth']);
+      document.documentElement.classList.remove('dark-mode');
     });
   }
 
@@ -149,7 +148,7 @@ export class SettingsPage implements OnInit {
   updateUser(formValue: AopaUser) {
     this.firebase.updateUser(formValue);
     this.submitted = true;
-    this.settingsForm.reset();
+
   }
 
   updatePreference(event: MatSlideToggleChange) {

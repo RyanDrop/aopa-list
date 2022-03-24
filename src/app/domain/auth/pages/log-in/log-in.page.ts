@@ -3,7 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { CustomValidators } from '@aopa/validators';
-import { FirebaseService } from './../../../../shared/firebase';
+import { FirebaseService } from 'app/shared/services/firebase.service';
+
+
+
 
 @Component({
   selector: 'aopa-log-in',
@@ -17,7 +20,7 @@ export class LogInPage implements OnInit {
   constructor(
     private firebase: FirebaseService,
     private readonly router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createForms();
@@ -91,17 +94,15 @@ export class LogInPage implements OnInit {
   }
 
   login() {
-    this.firebase.login(this.loginEmail.value, this.loginPassword.value);
-    this.router.navigate(['/home']);
+    this.firebase.signInWithEmailAndPassword(this.loginEmail.value, this.loginPassword.value).subscribe(() => this.router.navigate(['/home']));
   }
 
   register() {
-    this.firebase.register({
+    this.firebase.registerUser({
       name: this.nameControl.value,
       occupation: this.occupationControl.value,
       email: this.registerEmail.value,
       password: this.registerPassword.value,
-    });
-    this.router.navigate(['/home']);
+    }).subscribe(() => this.router.navigate(['/home']));
   }
 }

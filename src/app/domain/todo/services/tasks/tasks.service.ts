@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FirebaseService } from 'app/shared/services/firebase.service';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { KeysTaskData, ValuesTaskData } from '../../../../shared/firebase';
 import { DateFnsService } from '../date-fns/date-fns.service';
-import { FirebaseService, UserDetails } from './../../../../shared/firebase';
 import { KeyLists, Task } from './task.service.models';
 
 @UntilDestroy()
@@ -15,7 +14,7 @@ export class TasksService {
   constructor(
     private dateFnsService: DateFnsService,
     private firebase: FirebaseService
-  ) {}
+  ) { }
 
   private tasks: Task[];
 
@@ -36,18 +35,16 @@ export class TasksService {
 
   setTasks(listTask: KeyLists) {
     this.currentListTask = listTask;
-    this.tasks$ = this.firebase.user$.pipe(
-      switchMap((details: UserDetails) => {
-        const tasksStorage = details.user.tasks;
-        this.taskData = tasksStorage;
-        this.tasks = tasksStorage[this.currentListTask];
-        return of(this.tasks);
-      }),
-      tap(() => {
-        this.getPercentageTasks();
-        this.getStreak();
-      })
-    );
+
+    const aopaUser = from(this.firebase.getUser())
+    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
+      this.taskData = user.tasks
+      this.tasks = this.taskData[listTask]
+      this.tasks$ = of(this.tasks)
+
+      this.getPercentageTasks()
+      this.getStreak()
+    })
   }
 
   addTask(taskDescription: string): void {

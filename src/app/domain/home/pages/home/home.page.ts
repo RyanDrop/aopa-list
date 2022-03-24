@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { take } from 'rxjs/operators';
-import { FirebaseService } from './../../../../shared/firebase';
+import { FirebaseService } from 'app/shared/services/firebase.service';
+import { from } from 'rxjs';
 
+
+@UntilDestroy()
 @Component({
   selector: 'aopa-home',
   templateUrl: './home.page.html',
@@ -10,22 +12,21 @@ import { FirebaseService } from './../../../../shared/firebase';
 })
 @UntilDestroy()
 export class HomePage implements OnInit {
+
+  constructor(private readonly firebase: FirebaseService,
+  ) { }
+
   name: string;
   occupation: string;
-  constructor(private firebase: FirebaseService) {}
 
-  ngOnInit(): void {
-    this.firebase.hasLogin();
-    this.firebase.hasUser$
-      .pipe(take(1), untilDestroyed(this))
-      .subscribe((boolean) => {
-        if (boolean) return;
-      });
-    this.firebase.user$
-      .pipe(take(1), untilDestroyed(this))
-      .subscribe((details) => {
-        this.name = details.user.name;
-        this.occupation = details.user.occupation;
-      });
+  ngOnInit() {
+    const aopaUser = from(this.firebase.getUser())
+    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
+      this.name = user.name
+      this.occupation = user.occupation
+      if (user.darkThemePreference) {
+        document.documentElement.classList.add('dark-mode')
+      }
+    })
   }
 }
