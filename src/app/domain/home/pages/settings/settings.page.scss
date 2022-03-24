@@ -50,13 +50,19 @@ $font-bold: 800;
     margin-top: 25px;
     @include flex-center(column);
 
-    h2 {
-      margin-top: 35px;
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    h1.preference {
+      margin-top: 40px;
     }
 
     .editing.container {
       height: 60px;
-      width: 180px;
+      width: 200px;
       position: relative;
       .editing {
         @include flex-center(column);
@@ -73,15 +79,19 @@ $font-bold: 800;
             font-weight: 500;
           }
           mat-icon {
+            margin-top: 11px;
             margin-left: 5px;
-            margin-top: 5px;
           }
+        }
+        button {
+          width: 140px;
         }
       }
     }
   }
 
   aopa-edit-in-place {
+    margin-bottom: 0;
     cursor: pointer;
   }
 
@@ -90,6 +100,11 @@ $font-bold: 800;
     max-width: 900px;
     display: flex;
     justify-content: space-between;
+
+    p {
+      font-size: 15px;
+      font-weight: 500;
+    }
 
     mat-slide-toggle {
       position: relative;

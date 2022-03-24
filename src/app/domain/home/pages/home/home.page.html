@@ -3,9 +3,10 @@
   <div class="profile">
     <div class="profile-image">
       <img src="./../../../assets/profile.png" />
+      <mat-icon>edit</mat-icon>
     </div>
     <div class="profile-info">
-      <h1>{{name}}</h1>
+      <h1>{{ name }}</h1>
       <p>{{occupation}}</p>
     </div>
   </div>
@@ -29,12 +30,8 @@
     [listModeStatus]="'Active'"
     [backgroundIcon]="'red'"
   ></aopa-select-list-mode>
+</div>
 
-  <aopa-select-list-mode
-    [icon]="'mode_standby'"
-    [router]="'/'"
-    [listMode]="'Goals'"
-    [listModeStatus]="' Active'"
-    [backgroundIcon]="'green'"
-  ></aopa-select-list-mode>
+<div class="projects">
+  <h1>Projects</h1>
 </div>
