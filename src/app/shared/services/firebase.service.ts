@@ -90,4 +90,28 @@ export class FirebaseService {
     }
   }
 
+  getReference() {
+    return doc(
+      this.firestore,
+      eFireStorageCollections.USERS,
+      this.auth.currentUser!.uid
+    );
+  }
+
+  async getUser() {
+    const doc = await getDoc(this.getReference());
+    const user = doc.data() as AopaUser;
+    return user;
+  }
+
+  updateTasksFields(key: KeysTaskData | KeyLists, value: ValuesTaskData): void {
+    const usersDocReference = this.getReference();
+    try {
+      updateDoc(usersDocReference, { [`tasks.${key}`]: value });
+    } catch (error) {
+      this.toast.error(`Error adding document: ${error}`);
+    }
+  }
+
+
 }
