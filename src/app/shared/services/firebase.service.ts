@@ -114,7 +114,62 @@ export class FirebaseService {
   }
 
 
+  //Jão
+  async updateUser(object: Partial<AopaUser>): Promise<void> {
+    if (!this.auth.currentUser) return;
+
+    const fieldNames = Object.keys(object) as Array<keyof AopaUser>;
+    const hasMoreThanOneField = fieldNames.length > 1;
+
+    if (hasMoreThanOneField) return this.updateFields(fieldNames, object);
+
+    const fieldName = fieldNames[0];
+    const fieldValue = object[fieldName];
+
+    const usersDocReference = this.getReference();
+
+    try {
+      updateDoc(usersDocReference, { [fieldName]: fieldValue });
+      this.toast.success(
+        `Update ${spaceBeforeEveryUppercase(fieldName)} successful`
+      );
+    } catch (error) {
+      this.toast.error(`Error adding document: ${error}`);
+    }
 }
+
+  async updateEmail(
+    email: string,
+    password: string,
+    newEmail: string
+  ): Promise<void> {
+    if (!this.auth.currentUser) return;
+    updateEmail(this.auth.currentUser, newEmail)
+      .then(() => {
+        this.toast.success(`Update email to ${newEmail} successful`);
+      })
+      .catch((error) => {
+        this.toast.error(error.message);
+      });
+  }
+
+  updateFields(fieldsName: string[], object: Partial<AopaUser>): void {
+    fieldsName.forEach((field) => {
+      if (!this.auth.currentUser) return;
+      const fieldName = field as keyof AopaUser;
+      const usersDocReference = this.getReference();
+      try {
+        updateDoc(usersDocReference, { [field]: object[fieldName] });
+        if (fieldName === 'email') return;
+        this.toast.success(
+          `Update ${spaceBeforeEveryUppercase(fieldName)} successful`
+        );
+      } catch (error) {
+        this.toast.error(`Error adding document: ${error}`);
+      }
+    });
+  }
+
   logoff() {
     const observable$ = defer(() => {
       return this.auth.signOut();
