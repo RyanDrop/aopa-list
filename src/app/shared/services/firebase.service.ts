@@ -62,6 +62,25 @@ export class FirebaseService {
     );
   }
 
+  signInWithEmailAndPassword(
+    email: string,
+    password: string
+  ): Observable<UserCredential> {
+    const observable$ = defer(() => {
+      return signInWithEmailAndPassword(this.auth, email, password);
+    }).pipe(
+      tap(() => {
+        this.toast.success(FirebaseToastMessage.USER_LOGGED_IN);
+      }),
+      catchError((error: FirebaseError) => {
+        this.toast.error(FIREBASE_ERROR_MENSAGENS[error.code] || error.code);
+        throw error.code;
+      })
+    );
+
+    return observable$;
+  }
+
   async addUserInfo(user: AopaUser) {
     const userDocReference = this.getReference();
     try {
