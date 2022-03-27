@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "barrel": "barrelsby -e .spec.ts --delete -l all -d ./src/app",
     "test": "ng test",
@@ -30,7 +30,9 @@
     "@ngneat/until-destroy": "^9.0.0",
     "barrelsby": "^2.3.1",
     "date-fns": "^2.28.0",
+    "express": "^4.17.3",
     "firebase": "^9.4.0",
+    "ngx-colors": "^3.1.1",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "ts-mockito": "^2.6.1",
