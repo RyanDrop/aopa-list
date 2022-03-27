@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class AuthCardComponent {
   @Input() displayNone: boolean;
-  @Input() area: Object;
+  @Input() cardSize: Object;
 }

@@ -1,9 +1,10 @@
-<aopa-auth-card [area]="area">
+<aopa-auth-card [cardSize]="area">
   <div class="welcome">
     <h1>AopaList</h1>
     <p>
-      Task Lists are lists of all the tasks you need to do! We will work with
-      daily tasks, weekly and so on. Here we go?
+      <span translate="no">To-do lists </span> are lists of all the tasks you
+      need to do! Let's work with daily tasks, weekly tasks and projects. Let's
+      go?
     </p>
     <button mat-raised-button [routerLink]="'/auth/log-in'">
       <mat-icon>navigate_next</mat-icon>

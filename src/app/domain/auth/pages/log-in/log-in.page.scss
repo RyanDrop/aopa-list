@@ -2,6 +2,7 @@
 
 :host {
   color: vra(--text-color);
+  font-family: "Poppins", sans-serif;
   .content {
     @include flex-center(column);
     mat-tab-group {
@@ -35,6 +36,10 @@
       @include flex-center(column);
     }
 
+    .done {
+      @include flex-center(column);
+    }
+
     button {
       background-color: white;
       width: 201px;
@@ -54,10 +59,30 @@
       width: 270px;
       .done {
         @include flex-center(column);
+        p {
+          text-align: center;
+          color: var(--white);
+          margin-bottom: 15px;
+        }
+        .file-upload-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+        button.file {
+          width: 40px;
+          height: 40px;
+        }
       }
       .back {
         margin-bottom: 18.813px;
       }
+    }
+
+    input[type="file"] {
+      display: none;
     }
   }
 }

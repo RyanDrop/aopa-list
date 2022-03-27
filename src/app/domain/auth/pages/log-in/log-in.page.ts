@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
@@ -17,10 +17,13 @@ export class LogInPage implements OnInit {
   loginFormGroup: FormGroup;
   firstRegisterFormGroup: FormGroup;
   secondRegisterFormGroup: FormGroup;
+  profileImage: FormControl;
+  fileName: string;
 
   constructor(
     private firebase: FirebaseService,
-    private readonly router: Router
+    private readonly router: Router,
+    private changeDetector: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +69,13 @@ export class LogInPage implements OnInit {
         CustomValidators.matchPassword('registerPassword'),
       ]),
     });
+
+    this.profileImage = new FormControl(null, [
+      Validators.required,
+    ])
   }
+
+
 
   matcher = new ErrorStateMatcher();
 
@@ -98,6 +107,18 @@ export class LogInPage implements OnInit {
     return this.firstRegisterFormGroup.controls.occupation as FormControl;
   }
 
+  onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files: FileList = target.files as FileList;
+
+    if (files && files.length) {
+      const file = files[0];
+      this.fileName = file.name;
+      this.profileImage.setValue(file);
+      this.changeDetector.markForCheck();
+    }
+  }
+
   login() {
     this.firebase.signInWithEmailAndPassword(this.loginEmail.value, this.loginPassword.value).subscribe(() => this.router.navigate(['/home']));
   }
@@ -108,6 +129,7 @@ export class LogInPage implements OnInit {
       occupation: this.occupationControl.value,
       email: this.registerEmail.value,
       password: this.registerPassword.value,
+      file: this.profileImage.value,
     }).subscribe(() => this.router.navigate(['/home']));
   }
 }

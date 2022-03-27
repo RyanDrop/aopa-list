@@ -66,6 +66,7 @@
               </button>
             </form>
           </mat-step>
+
           <mat-step [stepControl]="secondRegisterFormGroup" [editable]="true">
             <form [formGroup]="secondRegisterFormGroup">
               <aopa-form-input
@@ -109,23 +110,42 @@
             </form>
           </mat-step>
           <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
             <div class="done">
-              <p>You are now done.</p>
-              <div>
-                <button mat-raised-button matStepperPrevious class="back">
-                  Back
-                </button>
-                <button
-                  mat-raised-button
-                  color="primary"
-                  type="submit"
-                  [disabled]="!secondRegisterFormGroup.valid && !firstRegisterFormGroup.valid"
-                  (click)="register()"
-                >
-                  Register
-                </button>
+              <p>
+                Your registration is almost ready, now just add a profile
+                picture!
+              </p>
+              <div class="file-upload-container">
+                <p>{{fileName || "No file uploaded yet."}}</p>
+                <div class="file-upload">
+                  <input
+                    type="file"
+                    (change)="onFileChange($event)"
+                    #fileUpload
+                    data-testid="input-file"
+                  />
+                  <button
+                    class="file"
+                    mat-mini-fab
+                    color="primary"
+                    (click)="fileUpload.click()"
+                  >
+                    <mat-icon>attach_file</mat-icon>
+                  </button>
+                </div>
               </div>
+              <button mat-raised-button matStepperPrevious class="back">
+                Back
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="!profileImage.valid"
+                (click)="register()"
+              >
+                Register
+              </button>
             </div>
           </mat-step>
         </mat-stepper>
