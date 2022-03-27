@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { KeyLists } from 'app/domain/todo/services/tasks/task.service.models';
 import { TasksService } from 'app/domain/todo/services/tasks/tasks.service';
-import { FirebaseService } from 'app/shared/services/firebase.service';
+import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
 import { from, Observable } from 'rxjs';
 import { Task } from './../../services/tasks/task.service.models';
 

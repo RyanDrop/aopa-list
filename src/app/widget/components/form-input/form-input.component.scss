@@ -1,14 +1,17 @@
 @import "./../../../../styles.scss";
 
 :host {
+  color: var(--text-color);
+  user-select: none;
+
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: var(--white);
     border-radius: 5px;
   }
 
-  // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-  //   background-color: var(--white);
-  // }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: var(--field-appearance-fill);
+  }
 
   .mat-error {
     font-family: "Poppins", sans-serif;

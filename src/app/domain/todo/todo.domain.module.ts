@@ -17,6 +17,7 @@ import { EditTaskMatDialogComponent } from './components/display-tasks/edit-task
 import { InputTaskComponent } from './components/input-task/input-task.component';
 import { TaskProgressComponent } from './components/task-progress/task-progress.component';
 import { ListPage } from './pages/list/list.page';
+import { ProjectPage } from './pages/project/project.page';
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoComponent } from './todo.component';
 
@@ -28,6 +29,8 @@ import { TodoComponent } from './todo.component';
     InputTaskComponent,
     TaskProgressComponent,
     EditTaskMatDialogComponent,
+    ProjectPage,
+
   ],
   imports: [
     CommonModule,
@@ -48,4 +51,4 @@ import { TodoComponent } from './todo.component';
   ],
   exports: [],
 })
-export class TodoListDomainModule {}
+export class TodoListDomainModule { }

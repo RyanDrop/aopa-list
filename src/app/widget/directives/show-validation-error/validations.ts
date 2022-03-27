@@ -42,6 +42,10 @@ export const VALIDATIONS = [
     messageFn: () => eValidationErrorMessage.PASSWORD,
   },
   {
+    errorName: eValidationErrorKeys.MAT_DATEPICKER_FILTER,
+    messageFn: () => eValidationErrorMessage.MAT_DATEPICKER_FILTER,
+  },
+  {
     errorName: eValidationErrorKeys.CONFIRMPASSWORD,
     messageFn: () => eValidationErrorMessage.CONFIRMPASSWORD,
   },
