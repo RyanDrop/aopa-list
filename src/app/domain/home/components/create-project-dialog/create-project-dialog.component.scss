@@ -1,0 +1,40 @@
+@import "./../../../../../styles.scss";
+:host {
+  color: var(--text-color);
+  form {
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    @include flex-center(column);
+    mat-form-field {
+      width: 200px;
+    }
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background-color: var(--field-appearance-fill);
+    }
+
+    button {
+      width: 200px;
+    }
+
+    ngx-colors {
+      margin-bottom: 20px !important;
+      display: flex !important;
+      align-items: center;
+      height: 40px;
+      border-radius: 4px;
+
+      background-color: var(--field-appearance-fill);
+      ::ng-deep .app-color-picker {
+        display: flex;
+        justify-content: center;
+        width: 200px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
