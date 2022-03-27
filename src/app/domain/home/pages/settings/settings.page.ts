@@ -69,12 +69,12 @@ export class SettingsPage implements OnInit {
 
   ngOnInit(): void {
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe((user: AopaUser) => {
-      const name = user.name;
+    aopaUser.pipe(untilDestroyed(this)).subscribe((aopa) => {
+      const name = aopa.user.name;
       const email = this.auth.currentUser!.email
-      const occupation = user.occupation;
-      this.darkThemePreference = user.darkThemePreference;
-      this.phrasePreference = user.phrasePreference;
+      const occupation = aopa.user.occupation;
+      this.darkThemePreference = aopa.user.darkThemePreference;
+      this.phrasePreference = aopa.user.phrasePreference;
       this.createForm(name, email, occupation);
       this.toggleDarkMode();
     });

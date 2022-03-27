@@ -15,8 +15,8 @@ export class ProjectsService {
 
   constructor(private firebase: FirebaseService) {
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
-      const projects = user.projects
+    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+      const projects = aopa.user.projects
       this.project$ = of(projects)
     })
   }

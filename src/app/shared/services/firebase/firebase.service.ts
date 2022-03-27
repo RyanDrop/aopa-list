@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, UserCredential } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, updateProfile, UserCredential } from '@angular/fire/auth';
 import { doc, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Storage } from '@angular/fire/storage';
 import { HotToastService } from '@ngneat/hot-toast';
 import { KeyLists } from 'app/domain/todo/services/tasks/task.service.models';
 import { Project } from 'app/shared/services/projects/projects.service.models';
 import { getDoc } from 'firebase/firestore';
+import {
+  getDownloadURL,
+  ref,
+  StorageReference,
+  uploadBytes
+} from 'firebase/storage';
 import { defer, Observable } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
-import { AopaUser, eFireStorageCollections, FirebaseToastMessage, FIREBASE_ERROR_MENSAGENS, KeysTaskData, RegisterUser, ValuesTaskData } from './firebase.service.models';
+import { AopaUser, eFireStorageCollections, FirebaseThrowError, FirebaseToastMessage, FIREBASE_ERROR_MENSAGENS, KeysTaskData, RegisterUser, ValuesTaskData } from './firebase.service.models';
 
 
 const spaceBeforeEveryUppercase = (str: string) =>
@@ -21,6 +28,7 @@ export class FirebaseService {
   constructor(private auth: Auth,
     private toast: HotToastService,
     private firestore: Firestore,
+    private storage: Storage,
   ) { }
 
   createUserWithEmailAndPassword(
@@ -60,7 +68,14 @@ export class FirebaseService {
     return this.createUserWithEmailAndPassword(user.email, user.password).pipe(
       switchMap(() => {
         return this.addUserInfo(aopaUser);
-      })
+      }), switchMap(() => {
+        return this.uploadFile(user.file).pipe(switchMap((uploadTaskSnapshot) => {
+          return this.updateProfile({
+            displayName: user.name,
+            photoURL: uploadTaskSnapshot
+          })
+        }))
+      }),
     );
   }
 
@@ -83,6 +98,17 @@ export class FirebaseService {
     return observable$;
   }
 
+  updateUserProfileImage(file: File) {
+    return this.uploadFile(file).pipe(
+      switchMap((uploadTaskSnapshot) => {
+        return this.updateProfile({
+          photoURL: uploadTaskSnapshot
+        })
+      }
+      )
+    );
+  }
+
   async addUserInfo(user: AopaUser) {
     const userDocReference = this.getReference();
     try {
@@ -90,6 +116,55 @@ export class FirebaseService {
     } catch (error) {
       this.toast.error(`Error adding document: ${error}`);
     }
+  }
+
+  updateProfile(user: {
+    displayName?: string | null;
+    photoURL?: string | null;
+  }) {
+    const observable$ = defer(() => {
+      if (!this.auth.currentUser)
+        throw Error(FirebaseThrowError.USER_IS_NOT_LOGGED);
+      return updateProfile(this.auth.currentUser, user);
+    });
+
+    return observable$;
+  }
+
+  uploadFile(file: File) {
+    if (!this.auth.currentUser)
+      throw Error(FirebaseThrowError.USER_IS_NOT_LOGGED);
+
+    const urlRef = ref(
+      this.storage,
+      `users/${this.auth.currentUser.uid}/profile.jpg`
+    );
+
+    return this.uploadBytes(urlRef, file).pipe(
+      switchMap((url) => {
+        return this.getDownloadURL(url.ref);
+      })
+    );
+  }
+
+  uploadBytes(storage: StorageReference, file: File) {
+    const observable$ = defer(() => {
+      if (!this.auth.currentUser)
+        throw Error(FirebaseThrowError.USER_IS_NOT_LOGGED);
+      return uploadBytes(storage, file);
+    });
+
+    return observable$;
+  }
+
+  getDownloadURL(storage: StorageReference) {
+    const observable$ = defer(() => {
+      if (!this.auth.currentUser)
+        throw Error(FirebaseThrowError.USER_IS_NOT_LOGGED);
+      return getDownloadURL(storage);
+    });
+
+    return observable$;
   }
 
   getReference() {
@@ -103,7 +178,12 @@ export class FirebaseService {
   async getUser() {
     const doc = await getDoc(this.getReference());
     const user = doc.data() as AopaUser;
-    return user;
+    const aopaUser = {
+      user: user,
+      firebaseUser: this.auth.currentUser,
+    };
+
+    return aopaUser;
   }
 
   updateTasksFields(key: KeysTaskData | KeyLists, value: ValuesTaskData): void {

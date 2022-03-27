@@ -37,8 +37,8 @@ export class TasksService {
     this.currentListTask = listTask;
 
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
-      this.taskData = user.tasks
+    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+      this.taskData = aopa.user.tasks
       this.tasks = this.taskData[listTask]
       this.tasks$ = of(this.tasks)
 

@@ -25,8 +25,8 @@ export class ListPage implements OnInit {
 
   ngOnInit(): void {
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
-      if (user.darkThemePreference) {
+    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+      if (aopa.user.darkThemePreference) {
         document.documentElement.classList.add('dark-mode')
       }
     })

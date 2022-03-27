@@ -6,6 +6,7 @@ export interface RegisterUser {
     occupation: string;
     email: string;
     password: string;
+    file: File;
 }
 
 export interface AopaUser {
@@ -54,6 +55,11 @@ export const FIREBASE_ERROR_MENSAGENS: { [key: string]: string } = {
     'auth/api-key-not-valid.-please-pass-a-valid-api-key.':
         'A chave da API é inválida.',
 };
+
+export enum FirebaseThrowError {
+    USER_IS_NOT_LOGGED = 'Usuário não está logado.',
+    USER_HAS_FACEBOOK_LOGIN = 'Usuário já está logado com o Facebook.',
+}
 
 export enum KeysTaskData {
     CURRENT_DAY = 'currentDay',
