@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { FirebaseService } from 'app/shared/services/firebase.service';
+import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { KeysTaskData, ValuesTaskData } from '../../../../shared/firebase';
 import { DateFnsService } from '../date-fns/date-fns.service';
