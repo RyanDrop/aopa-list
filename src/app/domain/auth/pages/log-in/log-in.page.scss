@@ -1,6 +1,7 @@
 @import "./../../../../../styles.scss";
 
 :host {
+  color: vra(--text-color);
   .content {
     @include flex-center(column);
     mat-tab-group {
@@ -21,12 +22,17 @@
       border-bottom: 0px;
       margin-bottom: 10px;
     }
+
     form {
       @include flex-center(column);
     }
 
-    mat-form-field {
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
       background-color: var(--white);
+    }
+
+    ::ng-deep .mat-tab-body-content {
+      @include flex-center(column);
     }
 
     button {
@@ -40,6 +46,17 @@
       &:disabled {
         background-color: rgb(211, 211, 211);
         color: var(--text-color);
+      }
+    }
+
+    mat-stepper {
+      background-color: transparent;
+      width: 270px;
+      .done {
+        @include flex-center(column);
+      }
+      .back {
+        margin-bottom: 18.813px;
       }
     }
   }

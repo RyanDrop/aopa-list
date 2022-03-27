@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { CustomValidators } from '@aopa/validators';
-import { FirebaseService } from 'app/shared/services/firebase.service';
+import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
 
 
 
@@ -15,7 +15,8 @@ import { FirebaseService } from 'app/shared/services/firebase.service';
 })
 export class LogInPage implements OnInit {
   loginFormGroup: FormGroup;
-  registerFormGroup: FormGroup;
+  firstRegisterFormGroup: FormGroup;
+  secondRegisterFormGroup: FormGroup;
 
   constructor(
     private firebase: FirebaseService,
@@ -38,7 +39,7 @@ export class LogInPage implements OnInit {
       ]),
     });
 
-    this.registerFormGroup = new FormGroup({
+    this.firstRegisterFormGroup = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
         CustomValidators.personName,
@@ -47,6 +48,10 @@ export class LogInPage implements OnInit {
         Validators.required,
         CustomValidators.occupation,
       ]),
+
+    });
+
+    this.secondRegisterFormGroup = new FormGroup({
       registerEmail: new FormControl(null, [
         Validators.required,
         Validators.email,
@@ -74,23 +79,23 @@ export class LogInPage implements OnInit {
   }
 
   get registerEmail() {
-    return this.registerFormGroup.controls.registerEmail as FormControl;
+    return this.secondRegisterFormGroup.controls.registerEmail as FormControl;
   }
 
   get registerPassword() {
-    return this.registerFormGroup.controls.registerPassword as FormControl;
+    return this.secondRegisterFormGroup.controls.registerPassword as FormControl;
   }
 
   get confirmPassword() {
-    return this.registerFormGroup.controls.confirmPassword as FormControl;
+    return this.secondRegisterFormGroup.controls.confirmPassword as FormControl;
   }
 
   get nameControl(): FormControl {
-    return this.registerFormGroup.controls.name as FormControl;
+    return this.firstRegisterFormGroup.controls.name as FormControl;
   }
 
   get occupationControl(): FormControl {
-    return this.registerFormGroup.controls.occupation as FormControl;
+    return this.firstRegisterFormGroup.controls.occupation as FormControl;
   }
 
   login() {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormInputWidgetModule } from 'app/widget/components/form-input/form-input.widget.module';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -22,7 +23,9 @@ import { WelcomePage } from './pages/welcome/welcome.page';
     ReactiveFormsModule,
     FormsModule,
     FormInputWidgetModule,
+    MatStepperModule,
+
   ],
   providers: [],
 })
-export class AuthDomainModule {}
+export class AuthDomainModule { }

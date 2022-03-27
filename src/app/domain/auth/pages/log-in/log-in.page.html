@@ -1,7 +1,7 @@
 <aopa-auth-card [displayNone]="true">
   <div class="content">
     <mat-tab-group mat-align-tabs="center">
-      <mat-tab label="Login" class="login" width="250px">
+      <mat-tab label="Login" class="login">
         <form [formGroup]="loginFormGroup">
           <aopa-form-input
             [labelName]="'Email'"
@@ -34,68 +34,101 @@
           </button>
         </form>
       </mat-tab>
-      <mat-tab label="Register">
-        <form [formGroup]="registerFormGroup">
-          <aopa-form-input
-            [inputTestID]="'name-form-input'"
-            [labelName]="'Name'"
-            [typeInput]="'text'"
-            [placeholderInput]="'Ex. Marcelo'"
-            [control]="nameControl"
-            [controlName]="'name'"
-            [errorStateMatcher]="matcher"
-          ></aopa-form-input>
+      <mat-tab label="Register" class="register">
+        <mat-stepper linear #stepper>
+          <mat-step [stepControl]="firstRegisterFormGroup" [editable]="true">
+            <form [formGroup]="firstRegisterFormGroup">
+              <aopa-form-input
+                [inputTestID]="'name-form-input'"
+                [labelName]="'Name'"
+                [typeInput]="'text'"
+                [placeholderInput]="'Ex. Marcelo'"
+                [control]="nameControl"
+                [controlName]="'name'"
+                [errorStateMatcher]="matcher"
+              ></aopa-form-input>
+              <aopa-form-input
+                [inputTestID]="'occupation-form-input'"
+                [labelName]="'Occupation'"
+                [typeInput]="'text'"
+                [placeholderInput]="'Ex. FrontEnd Developer'"
+                [control]="occupationControl"
+                [controlName]="'occupation'"
+                [errorStateMatcher]="matcher"
+              ></aopa-form-input>
 
-          <aopa-form-input
-            [inputTestID]="'occupation-form-input'"
-            [labelName]="'Occupation'"
-            [typeInput]="'text'"
-            [placeholderInput]="'Ex. FrontEnd Developer'"
-            [control]="occupationControl"
-            [controlName]="'occupation'"
-            [errorStateMatcher]="matcher"
-          ></aopa-form-input>
+              <button
+                mat-raised-button
+                matStepperNext
+                [disabled]="!firstRegisterFormGroup.valid"
+              >
+                Next
+              </button>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondRegisterFormGroup" [editable]="true">
+            <form [formGroup]="secondRegisterFormGroup">
+              <aopa-form-input
+                [labelName]="'Email'"
+                [typeInput]="'email'"
+                [placeholderInput]="'Ex. pat@example.com'"
+                [control]="registerEmail"
+                [errorStateMatcher]="matcher"
+                [controlName]="'registerEmail'"
+                autocomplete="off"
+              ></aopa-form-input>
+              <aopa-form-input
+                [labelName]="'Password'"
+                [typeInput]="'password'"
+                [placeholderInput]="'Password'"
+                [control]="registerPassword"
+                [errorStateMatcher]="matcher"
+                [controlName]="'registerPassword'"
+                autocomplete="off"
+              ></aopa-form-input>
 
-          <aopa-form-input
-            [labelName]="'Email'"
-            [typeInput]="'email'"
-            [placeholderInput]="'Ex. pat@example.com'"
-            [control]="registerEmail"
-            [errorStateMatcher]="matcher"
-            [controlName]="'registerEmail'"
-            autocomplete="off"
-          ></aopa-form-input>
-
-          <aopa-form-input
-            [labelName]="'Password'"
-            [typeInput]="'password'"
-            [placeholderInput]="'Password'"
-            [control]="registerPassword"
-            [errorStateMatcher]="matcher"
-            [controlName]="'registerPassword'"
-            autocomplete="off"
-          ></aopa-form-input>
-
-          <aopa-form-input
-            [labelName]="'Confirm Password'"
-            [typeInput]="'password'"
-            [placeholderInput]="'Confirm Password'"
-            [control]="confirmPassword"
-            [errorStateMatcher]="matcher"
-            [controlName]="'confirmPassword'"
-            autocomplete="off"
-          ></aopa-form-input>
-
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!registerFormGroup.valid"
-            (click)="register()"
-          >
-            Register
-          </button>
-        </form>
+              <aopa-form-input
+                [labelName]="'Confirm Password'"
+                [typeInput]="'password'"
+                [placeholderInput]="'Confirm Password'"
+                [control]="confirmPassword"
+                [errorStateMatcher]="matcher"
+                [controlName]="'confirmPassword'"
+                autocomplete="off"
+              ></aopa-form-input>
+              <button mat-raised-button matStepperPrevious class="back">
+                Back
+              </button>
+              <button
+                mat-raised-button
+                matStepperNext
+                [disabled]="!secondRegisterFormGroup.valid"
+              >
+                Next
+              </button>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <div class="done">
+              <p>You are now done.</p>
+              <div>
+                <button mat-raised-button matStepperPrevious class="back">
+                  Back
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  [disabled]="!secondRegisterFormGroup.valid && !firstRegisterFormGroup.valid"
+                  (click)="register()"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </mat-step>
+        </mat-stepper>
       </mat-tab>
     </mat-tab-group>
   </div>

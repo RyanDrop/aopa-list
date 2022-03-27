@@ -34,4 +34,19 @@
 
 <div class="projects">
   <h1>Projects</h1>
+
+  <div class="projects-container">
+    <aopa-project-card
+      *ngFor="let project of projects$ | async"
+      [projectName]="project.name"
+      [icon]="project.icon"
+      [endDate]="project.endDate"
+      [routerLink]="'/todo/project/' + project.id"
+    ></aopa-project-card>
+
+    <div class="card-add-project" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+      <p>Add Project</p>
+    </div>
+  </div>
 </div>
