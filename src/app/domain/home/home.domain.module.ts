@@ -25,6 +25,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HomePage } from './pages/home/home.page';
 import { SettingsPage } from './pages/settings/settings.page';
+import { UpdateProfileImageDialogComponent } from './components/update-profile-image-dialog/update-profile-image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SettingsPage } from './pages/settings/settings.page';
     LoginDialogComponent,
     CreateProjectDialogComponent,
     ProjectCardComponent,
+    UpdateProfileImageDialogComponent,
 
   ],
   imports: [

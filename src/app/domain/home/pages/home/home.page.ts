@@ -4,8 +4,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
 import { ProjectsService } from 'app/shared/services/projects/projects.service';
 import { Project } from 'app/shared/services/projects/projects.service.models';
-import { from, Observable } from 'rxjs';
+import { from, Observable, timer } from 'rxjs';
 import { CreateProjectDialogComponent } from '../../components/create-project-dialog/create-project-dialog.component';
+import { UpdateProfileImageDialogComponent } from '../../components/update-profile-image-dialog/update-profile-image-dialog.component';
 
 
 
@@ -15,7 +16,6 @@ import { CreateProjectDialogComponent } from '../../components/create-project-di
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-@UntilDestroy()
 export class HomePage implements OnInit {
 
   constructor(private readonly firebase: FirebaseService, private dialog: MatDialog, private projects: ProjectsService
@@ -23,43 +23,53 @@ export class HomePage implements OnInit {
 
   name: string;
   occupation: string;
+  profileImage: string | null
+  loading = false
 
-
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
+  openCreateProjectDialog(): void {
+    this.dialog.open(CreateProjectDialogComponent, {
       width: '400px',
     });
+  }
 
-    // dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe((result) => {
-    //   console.log(result)
-    //   // const data = this.dateFns.formatDate(result.projectEndDate, 'yyyy-MM-dd')
-
-    //   // const project = {
-    //   //   name: result.name,
-    //   //   goal: result.goal,
-    //   //   endDate: data,
-    //   //   icon: result.icon
-    //   // }
-
-    //   // this.firebase.addUserInfo(project)
-    // }
-    // );
+  openUpdateImageDialog() {
+    const dialogRef = this.dialog.open(UpdateProfileImageDialogComponent, {
+      width: '300px',
+    });
+    dialogRef.afterClosed().subscribe((value) => {
+      if (!value) return
+      this.loading = true
+      timer(3000).subscribe(() => this.reloadImage())
+    }
+    );
   }
 
   ngOnInit() {
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe(user => {
-      this.name = user.name
-      this.occupation = user.occupation
-      if (user.darkThemePreference) {
+    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+      this.name = aopa.user.name
+      this.occupation = aopa.user.occupation
+      this.profileImage = aopa.firebaseUser!.photoURL
+      console.log(this.profileImage)
+      if (aopa.user.darkThemePreference) {
         document.documentElement.classList.add('dark-mode')
       }
     })
-
   }
 
   get projects$(): Observable<Project[]> {
     return this.projects.project$
+  }
+
+  reloadImage() {
+    const aopaUser = from(this.firebase.getUser())
+    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+      aopa.firebaseUser!.reload().then(() => {
+        this.loading = false
+        this.profileImage = aopa.firebaseUser!.photoURL
+      }
+      )
+    }
+    )
   }
 }

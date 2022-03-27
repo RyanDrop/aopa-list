@@ -1,19 +1,27 @@
 <aopa-header>
   <mat-icon>help</mat-icon>
   <div class="profile">
-    <div class="profile-image">
-      <img src="./../../../assets/profile.png" />
+    <div
+      class="profile-image"
+      [class.loading]="loading"
+      (click)="openUpdateImageDialog()"
+    >
+      <div class="lds-ripple" *ngIf="loading">
+        <div></div>
+        <div></div>
+      </div>
+      <img src="{{profileImage}}" />
       <mat-icon>edit</mat-icon>
     </div>
     <div class="profile-info">
-      <h1>{{ name }}</h1>
-      <p>{{occupation}}</p>
+      <h1 translate="no">{{ name }}</h1>
+      <p translate="no">{{occupation}}</p>
     </div>
   </div>
   <mat-icon class="settings" [routerLink]="'/settings'">settings</mat-icon>
 </aopa-header>
 
-<div class="task-mode">
+<div class="task-mode" translate="no">
   <h1>Task Mode</h1>
   <aopa-select-list-mode
     [icon]="'today'"
@@ -44,7 +52,7 @@
       [routerLink]="'/todo/project/' + project.id"
     ></aopa-project-card>
 
-    <div class="card-add-project" (click)="openDialog()">
+    <div class="card-add-project" (click)="openCreateProjectDialog()">
       <mat-icon>add</mat-icon>
       <p>Add Project</p>
     </div>
