@@ -4,6 +4,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updat
 import { doc, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { HotToastService } from '@ngneat/hot-toast';
 import { KeyLists } from 'app/domain/todo/services/tasks/task.service.models';
+import { Project } from 'app/shared/services/projects/projects.service.models';
 import { getDoc } from 'firebase/firestore';
 import { defer, Observable } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
@@ -53,6 +54,7 @@ export class FirebaseService {
         week: [],
         weekCurrentStreak: 0,
       },
+      projects: [],
     };
 
     return this.createUserWithEmailAndPassword(user.email, user.password).pipe(
@@ -136,7 +138,7 @@ export class FirebaseService {
     } catch (error) {
       this.toast.error(`Error adding document: ${error}`);
     }
-}
+  }
 
   async updateEmail(
     email: string,
@@ -180,6 +182,15 @@ export class FirebaseService {
     );
 
     return observable$;
+  }
+
+  createProject(project: Project[]) {
+    const usersDocReference = this.getReference();
+    try {
+      updateDoc(usersDocReference, { [`projects`]: project });
+    } catch (error) {
+      this.toast.error(`Error adding document: ${error}`);
+    }
   }
 }
 
