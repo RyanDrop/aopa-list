@@ -10,14 +10,14 @@ import { FirebaseService } from '../firebase/firebase.service';
 @UntilDestroy()
 export class ProjectsService {
 
-  private projects: Project[] = [];
+  private projects: Project[]
   project$: Observable<Project[]>
 
   constructor(private firebase: FirebaseService) {
     const aopaUser = from(this.firebase.getUser())
     aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
-      const projects = aopa.user.projects
-      this.project$ = of(projects)
+      this.projects = aopa.user.projects
+      this.project$ = of(this.projects)
     })
   }
 

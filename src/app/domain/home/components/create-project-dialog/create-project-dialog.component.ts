@@ -12,7 +12,8 @@ import { Project } from 'app/shared/services/projects/projects.service.models';
 })
 export class CreateProjectDialogComponent implements OnInit {
 
-  createProject: FormGroup
+  firstGroupCreateProject: FormGroup
+  secondGroupCreateProject: FormGroup
 
   constructor(private dateFns: DateFnsService, private projects: ProjectsService) { }
 
@@ -24,15 +25,18 @@ export class CreateProjectDialogComponent implements OnInit {
   }
 
   creatForm() {
-    this.createProject = new FormGroup({
+    this.firstGroupCreateProject = new FormGroup({
       projectName: new FormControl(null, [
         Validators.required,
         Validators.maxLength(50),
       ]),
-      projectEndDate: new FormControl(null, [
+      projectGoal: new FormControl(null, [
         Validators.required,
       ]),
-      projectGoal: new FormControl(null, [
+    });
+
+    this.secondGroupCreateProject = new FormGroup({
+      projectEndDate: new FormControl(null, [
         Validators.required,
       ]),
       projectColor: new FormControl(null, [
@@ -64,24 +68,25 @@ export class CreateProjectDialogComponent implements OnInit {
   matcher = new ErrorStateMatcher();
 
   get projectName() {
-    return this.createProject.controls.projectName as FormControl;
+    return this.firstGroupCreateProject.controls.projectName as FormControl;
 
-  }
-
-  get projectEndDate() {
-    return this.createProject.controls.projectEndDate as FormControl;
   }
 
   get projectGoal() {
-    return this.createProject.controls.projectGoal as FormControl;
+    return this.firstGroupCreateProject.controls.projectGoal as FormControl;
   }
 
+  get projectEndDate() {
+    return this.secondGroupCreateProject.controls.projectEndDate as FormControl;
+  }
+
+
   get projectColor() {
-    return this.createProject.controls.projectColor as FormControl;
+    return this.secondGroupCreateProject.controls.projectColor as FormControl;
   }
 
   get projectIcon() {
-    return this.createProject.controls.projectIcon as FormControl;
+    return this.secondGroupCreateProject.controls.projectIcon as FormControl;
   }
 
   submitForm() {
@@ -91,7 +96,8 @@ export class CreateProjectDialogComponent implements OnInit {
       name: this.projectName.value,
       goal: this.projectGoal.value,
       endDate: data,
-      icon: 'favorite',
+      icon: this.projectIcon.value,
+      color: this.projectColor.value,
       id: 0
     }
     this.projects.addProject(project)

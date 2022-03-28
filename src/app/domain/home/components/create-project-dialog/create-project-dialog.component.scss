@@ -1,6 +1,10 @@
 @import "./../../../../../styles.scss";
 :host {
   color: var(--text-color);
+  mat-stepper {
+    background-color: transparent;
+    width: 270px;
+  }
   form {
     h1 {
       font-size: 20px;
@@ -19,6 +23,10 @@
 
     button {
       width: 200px;
+    }
+
+    button.back {
+      margin-bottom: 10px;
     }
 
     ngx-colors {

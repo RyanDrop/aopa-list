@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Project } from 'app/shared/services/projects/projects.service.models';
 
 @Component({
   selector: 'aopa-project-card',
@@ -7,7 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ProjectCardComponent {
 
-  @Input() icon: string
-  @Input() projectName: string
-  @Input() endDate: string
+  @Input() project: Project;
+
 }

@@ -1,71 +1,94 @@
-<form [formGroup]="createProject">
-  <h1>Create a new project</h1>
+<mat-stepper #stepper linear>
+  <mat-step [stepControl]="firstGroupCreateProject">
+    <form [formGroup]="firstGroupCreateProject">
+      <aopa-form-input
+        [labelName]="'Project Name'"
+        [typeInput]="'text'"
+        [placeholderInput]="'2022 goals'"
+        [control]="projectName"
+        [errorStateMatcher]="matcher"
+        [controlName]="'projectName'"
+      ></aopa-form-input>
 
-  <aopa-form-input
-    [labelName]="'Project Name'"
-    [typeInput]="'text'"
-    [placeholderInput]="'2022 goals'"
-    [control]="projectName"
-    [errorStateMatcher]="matcher"
-    [controlName]="'projectName'"
-  ></aopa-form-input>
-
-  <aopa-form-input
-    labelName="Project's goal"
-    [typeInput]="'text'"
-    [placeholderInput]="'Get my financial freedom'"
-    [control]="projectGoal"
-    [errorStateMatcher]="matcher"
-    [controlName]="'projectGoal'"
-  >
-  </aopa-form-input>
-
-  <mat-form-field appearance="fill" data-testid="project-end-date">
-    <mat-label> Project end date </mat-label>
-    <input
-      autocomplete="off"
-      matInput
-      data-testid="birthday-form-input"
-      [min]="START_DATE"
-      [matDatepicker]="picker"
-      formControlName="projectEndDate"
-      placeholder="dd/mm/yyyy"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-    <mat-datepicker
-      #picker
-      startView="year"
-      [startAt]="START_DATE"
-    ></mat-datepicker>
-
-    <mat-error
-      aopaShowValidationError
-      [aopaShowValidationErrorControlName]="'projectEndDate'"
-      data-testid="birthday-error"
-    >
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Select icon</mat-label>
-    <mat-select data-testid="mat-select" [formControl]="projectIcon">
-      <mat-option
-        *ngFor="let icon of icons"
-        value="<mat-icon>{{ icon }}</mat-icon>"
-        ><mat-icon>{{ icon }}</mat-icon></mat-option
+      <aopa-form-input
+        labelName="Project's goal"
+        [typeInput]="'text'"
+        [placeholderInput]="'Get my financial freedom'"
+        [control]="projectGoal"
+        [errorStateMatcher]="matcher"
+        [controlName]="'projectGoal'"
       >
-    </mat-select>
-  </mat-form-field>
+      </aopa-form-input>
+      <button
+        mat-raised-button
+        matStepperNext
+        [disabled]="!firstGroupCreateProject.valid"
+      >
+        Next
+      </button>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondGroupCreateProject">
+    <form [formGroup]="secondGroupCreateProject">
+      <mat-form-field appearance="fill" data-testid="project-end-date">
+        <mat-label> Project end date </mat-label>
+        <input
+          autocomplete="off"
+          matInput
+          data-testid="birthday-form-input"
+          [min]="START_DATE"
+          [matDatepicker]="picker"
+          formControlName="projectEndDate"
+          placeholder="dd/mm/yyyy"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
-  <p>Select color</p>
-  <ngx-colors
-    ngx-colors-trigger
-    style="display: inline-block; margin: 5px"
-    [formControl]="projectColor"
-  ></ngx-colors>
+        <mat-datepicker
+          #picker
+          startView="year"
+          [startAt]="START_DATE"
+        ></mat-datepicker>
 
-  <button mat-raised-button (click)="submitForm()" mat-dialog-close="close">
-    Submit
-  </button>
-</form>
+        <mat-error
+          aopaShowValidationError
+          [aopaShowValidationErrorControlName]="'projectEndDate'"
+          data-testid="birthday-error"
+        >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select icon</mat-label>
+        <mat-select data-testid="mat-select" [formControl]="projectIcon">
+          <mat-option *ngFor="let icon of icons" value="{{ icon }}"
+            ><mat-icon>{{ icon }}</mat-icon></mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <p>Select color</p>
+      <ngx-colors
+        ngx-colors-trigger
+        style="display: inline-block; margin: 5px"
+        [formControl]="projectColor"
+      ></ngx-colors>
+
+      <button mat-raised-button matStepperPrevious class="back">Back</button>
+      <button
+        mat-raised-button
+        matStepperNext
+        [disabled]="!secondGroupCreateProject.valid"
+      >
+        Next
+      </button>
+    </form>
+  </mat-step>
+  <mat-step [editable]="true">
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="submitForm()">Done</button>
+    </div>
+  </mat-step>
+</mat-stepper>

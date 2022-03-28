@@ -3,5 +3,6 @@ export interface Project {
     goal: string;
     endDate: string;
     icon: string;
+    color: string;
     id: number
 }

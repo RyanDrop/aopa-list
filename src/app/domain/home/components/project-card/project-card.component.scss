@@ -1,18 +1,18 @@
 @import "./../../../../../styles.scss";
 
 :host {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(74, 102, 167);
-  padding: 10px 10px 3px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-  height: 104px;
-  color: var(--text-color);
-
-  &:hover {
-    transform: scale(1.05);
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 3px 10px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+    height: 104px;
+    color: var(--text-color);
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   .tasks,

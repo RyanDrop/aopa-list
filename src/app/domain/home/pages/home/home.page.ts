@@ -27,15 +27,11 @@ export class HomePage implements OnInit {
   loading = false
 
   openCreateProjectDialog(): void {
-    this.dialog.open(CreateProjectDialogComponent, {
-      width: '400px',
-    });
+    this.dialog.open(CreateProjectDialogComponent);
   }
 
   openUpdateImageDialog() {
-    const dialogRef = this.dialog.open(UpdateProfileImageDialogComponent, {
-      width: '300px',
-    });
+    const dialogRef = this.dialog.open(UpdateProfileImageDialogComponent);
     dialogRef.afterClosed().subscribe((value) => {
       if (!value) return
       this.loading = true
@@ -50,7 +46,6 @@ export class HomePage implements OnInit {
       this.name = aopa.user.name
       this.occupation = aopa.user.occupation
       this.profileImage = aopa.firebaseUser!.photoURL
-      console.log(this.profileImage)
       if (aopa.user.darkThemePreference) {
         document.documentElement.classList.add('dark-mode')
       }

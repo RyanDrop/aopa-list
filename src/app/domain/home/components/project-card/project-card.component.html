@@ -1,17 +1,19 @@
-<div class="main">
-  <div class="border">
-    <mat-icon>{{ icon }}</mat-icon>
+<div class="project-card" [style.background]="project.color">
+  <div class="main">
+    <div class="border">
+      <mat-icon>{{ project.icon }}</mat-icon>
+    </div>
+    <h1>{{ project.name }}</h1>
   </div>
-  <h1>{{ projectName }}</h1>
-</div>
-<div class="line"></div>
-<div class="info">
-  <div class="tasks">
-    <mat-icon>task</mat-icon>
-    <p>5/4</p>
-  </div>
-  <div class="end-date">
-    <mat-icon>insert_invitation</mat-icon>
-    <p>{{ endDate | date: "dd/MM/yy" }}</p>
+  <div class="line"></div>
+  <div class="info">
+    <div class="tasks">
+      <mat-icon>task</mat-icon>
+      <p>5/4</p>
+    </div>
+    <div class="end-date">
+      <mat-icon>insert_invitation</mat-icon>
+      <p>{{ project.endDate | date: "dd/MM/yy" }}</p>
+    </div>
   </div>
 </div>

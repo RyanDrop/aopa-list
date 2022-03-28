@@ -20,10 +20,16 @@
     text-align: center;
   }
   .buttons {
-    background: var(--button-background-color);
     margin-top: 10px;
+    button {
+      color: var(--text-color);
+      background: var(--button-background-color);
+    }
     button:nth-child(1) {
       margin-right: 10px;
+      &:disabled {
+        color: var(--button-disabled-text-color);
+      }
     }
   }
 }

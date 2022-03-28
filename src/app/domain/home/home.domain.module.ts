@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
 import { EditInPlaceComponent } from 'app/domain/home/components/edit-in-place/edit-in-place.component';
 import { ViewInputComponent } from 'app/domain/home/components/view-input/view-input.component';
 import { FormInputWidgetModule } from 'app/widget/components/form-input/form-input.widget.module';
@@ -21,11 +22,11 @@ import { CreateProjectDialogComponent } from './components/create-project-dialog
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { SelectListModeComponent } from './components/select-list-mode/select-list-mode.component';
+import { UpdateProfileImageDialogComponent } from './components/update-profile-image-dialog/update-profile-image-dialog.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HomePage } from './pages/home/home.page';
 import { SettingsPage } from './pages/settings/settings.page';
-import { UpdateProfileImageDialogComponent } from './components/update-profile-image-dialog/update-profile-image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { UpdateProfileImageDialogComponent } from './components/update-profile-i
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatStepperModule,
     MatDatepickerModule,
     FormInputWidgetModule,
     MatInputModule,

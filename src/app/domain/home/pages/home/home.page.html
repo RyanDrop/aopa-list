@@ -46,11 +46,10 @@
   <div class="projects-container">
     <aopa-project-card
       *ngFor="let project of projects$ | async"
-      [projectName]="project.name"
-      [icon]="project.icon"
-      [endDate]="project.endDate"
+      [project]="project"
       [routerLink]="'/todo/project/' + project.id"
-    ></aopa-project-card>
+    >
+    </aopa-project-card>
 
     <div class="card-add-project" (click)="openCreateProjectDialog()">
       <mat-icon>add</mat-icon>
