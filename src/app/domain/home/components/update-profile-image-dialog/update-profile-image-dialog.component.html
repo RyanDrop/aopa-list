@@ -1,31 +1,22 @@
 <div class="file-upload-container">
-  <p>{{ fileName || "No file uploaded yet." }}</p>
-  <div class="file-upload">
-    <input
-      type="file"
-      (change)="onFileChange($event)"
-      #fileUpload
-      data-testid="input-file"
-    />
+  <h1>Update profile picture</h1>
+  <aopa-form-image-cropper
+    [fileName]="fileName"
+    [profileImageControl]="profileImage"
+  >
+  </aopa-form-image-cropper>
+  <div class="buttons">
     <button
-      class="file"
-      mat-mini-fab
-      color="primary"
-      (click)="fileUpload.click()"
+      class="default-button"
+      matDialogClose="update"
+      mat-raised-button
+      (click)="sendFile()"
+      [disabled]="!profileImage.valid"
     >
-      <mat-icon>attach_file</mat-icon>
+      Update image
     </button>
-
-    <div class="buttons">
-      <button
-        matDialogClose="update"
-        mat-raised-button
-        (click)="sendFile()"
-        [disabled]="!profileImage.valid"
-      >
-        Update image
-      </button>
-      <button mat-raised-button matDialogClose>Cancel</button>
-    </div>
+    <button mat-raised-button matDialogClose class="default-button">
+      Cancel
+    </button>
   </div>
 </div>

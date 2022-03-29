@@ -27,14 +27,12 @@ export class UpdateProfileImageDialogComponent {
       this.profileImage.setValue(file);
       this.changeDetector.markForCheck();
     }
-    console.log(this.profileImage.value)
   }
 
   sendFile() {
     this.firebase.updateUserProfileImage(this.profileImage.value).subscribe(() => {
       this.profileImage.setValue(null);
       this.fileName = '';
-
     }
     )
   }
