@@ -141,6 +141,7 @@ export class SettingsPage implements OnInit {
         })
       )
       .subscribe(() => {
+
         this.updateUser(formValue);
       });
   }

@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { CustomValidators } from '@aopa/validators';
 import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
+import { base64ToFile, ImageCroppedEvent } from 'ngx-image-cropper';
 
 
 
@@ -19,6 +20,7 @@ export class LogInPage implements OnInit {
   secondRegisterFormGroup: FormGroup;
   profileImage: FormControl;
   fileName: string;
+
 
   constructor(
     private firebase: FirebaseService,
@@ -110,6 +112,7 @@ export class LogInPage implements OnInit {
   onFileChange(event: Event) {
     const target = event.target as HTMLInputElement;
     const files: FileList = target.files as FileList;
+    this.imageChangedEvent = event;
 
     if (files && files.length) {
       const file = files[0];
@@ -117,6 +120,24 @@ export class LogInPage implements OnInit {
       this.profileImage.setValue(file);
       this.changeDetector.markForCheck();
     }
+  }
+
+  imageChangedEvent: Event;
+  croppedImage: any;
+  showCropper = false;
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    if (this.croppedImage) {
+      this.profileImage.setValue(base64ToFile(this.croppedImage));
+    }
+
+  }
+  imageLoaded() {
+    this.showCropper = true;
+  }
+  loadImageFailed() {
+    alert('Could not load the image');
   }
 
   login() {

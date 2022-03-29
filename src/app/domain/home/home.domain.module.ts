@@ -14,6 +14,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { EditInPlaceComponent } from 'app/domain/home/components/edit-in-place/edit-in-place.component';
 import { ViewInputComponent } from 'app/domain/home/components/view-input/view-input.component';
+import { FormImageCropperWidgetModule } from 'app/widget/components/form-image-cropper/form-image-cropper.widget.module';
 import { FormInputWidgetModule } from 'app/widget/components/form-input/form-input.widget.module';
 import { HeaderWidgetModule } from 'app/widget/components/header/header.widget.module';
 import { ShowValidationErrorDirectiveWidgetModule } from 'app/widget/directives/show-validation-error/show-validation-error.widget.module';
@@ -62,7 +63,8 @@ import { SettingsPage } from './pages/settings/settings.page';
     MatDatepickerModule,
     MatNativeDateModule,
     ShowValidationErrorDirectiveWidgetModule,
-    NgxColorsModule
+    NgxColorsModule,
+    FormImageCropperWidgetModule
   ],
 })
 export class HomeDomainModule { }

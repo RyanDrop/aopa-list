@@ -1,4 +1,5 @@
-<mat-stepper #stepper linear>
+<h1>Create a new project</h1>
+<mat-stepper #stepper>
   <mat-step [stepControl]="firstGroupCreateProject">
     <form [formGroup]="firstGroupCreateProject">
       <aopa-form-input
@@ -20,6 +21,7 @@
       >
       </aopa-form-input>
       <button
+        class="default-button"
         mat-raised-button
         matStepperNext
         [disabled]="!firstGroupCreateProject.valid"
@@ -73,8 +75,11 @@
         [formControl]="projectColor"
       ></ngx-colors>
 
-      <button mat-raised-button matStepperPrevious class="back">Back</button>
+      <button class="default-button back" mat-raised-button matStepperPrevious>
+        Back
+      </button>
       <button
+        class="default-button"
         mat-raised-button
         matStepperNext
         [disabled]="!secondGroupCreateProject.valid"
@@ -84,11 +89,16 @@
     </form>
   </mat-step>
   <mat-step [editable]="true">
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="submitForm()">Done</button>
-    </div>
+    <form>
+      <p>You are now done.</p>
+      <div>
+        <button class="default-button back" mat-button matStepperPrevious>
+          Back
+        </button>
+        <button class="default-button" mat-button (click)="submitForm()">
+          Create Project
+        </button>
+      </div>
+    </form>
   </mat-step>
 </mat-stepper>

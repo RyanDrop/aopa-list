@@ -21,14 +21,7 @@
     color: var(--text-color);
   }
   .mat-raised-button {
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
     height: 51px;
     margin-bottom: 5px;
-    &:disabled {
-      background-color: var(--button-disabled-background-color);
-      color: var(--button-disabled-text-color);
-      cursor: not-allowed;
-    }
   }
 }

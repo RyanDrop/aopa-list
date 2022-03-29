@@ -1,10 +1,19 @@
 @import "./../../../../../styles.scss";
 :host {
   color: var(--text-color);
+
+  h1 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
   mat-stepper {
     background-color: transparent;
     width: 270px;
   }
+
   form {
     h1 {
       font-size: 20px;

@@ -35,7 +35,7 @@
         </form>
       </mat-tab>
       <mat-tab label="Register" class="register">
-        <mat-stepper linear #stepper>
+        <mat-stepper #stepper linear>
           <mat-step [stepControl]="firstRegisterFormGroup" [editable]="true">
             <form [formGroup]="firstRegisterFormGroup">
               <aopa-form-input
@@ -111,29 +111,14 @@
           </mat-step>
           <mat-step>
             <div class="done">
-              <p>
-                Your registration is almost ready, now just add a profile
-                picture!
-              </p>
-              <div class="file-upload-container">
-                <p>{{fileName || "No file uploaded yet."}}</p>
-                <div class="file-upload">
-                  <input
-                    type="file"
-                    (change)="onFileChange($event)"
-                    #fileUpload
-                    data-testid="input-file"
-                  />
-                  <button
-                    class="file"
-                    mat-mini-fab
-                    color="primary"
-                    (click)="fileUpload.click()"
-                  >
-                    <mat-icon>attach_file</mat-icon>
-                  </button>
-                </div>
-              </div>
+              <p>Choose a profile photo.</p>
+              <aopa-form-image-cropper
+                [fileName]="fileName"
+                [profileImageControl]="profileImage"
+                [authPage]="true"
+              >
+              </aopa-form-image-cropper>
+
               <button mat-raised-button matStepperPrevious class="back">
                 Back
               </button>

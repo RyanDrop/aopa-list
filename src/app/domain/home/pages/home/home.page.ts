@@ -31,7 +31,9 @@ export class HomePage implements OnInit {
   }
 
   openUpdateImageDialog() {
-    const dialogRef = this.dialog.open(UpdateProfileImageDialogComponent);
+    const dialogRef = this.dialog.open(UpdateProfileImageDialogComponent, {
+      width: '300px',
+    });
     dialogRef.afterClosed().subscribe((value) => {
       if (!value) return
       this.loading = true
