@@ -1,0 +1,32 @@
+<input
+  type="file"
+  (change)="onFileChange($event)"
+  #fileUpload
+  data-testid="input-file"
+/>
+<div class="cropper" [class.auth]="authPage">
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [containWithinAspectRatio]="false"
+    [aspectRatio]="1 / 1"
+    [cropperMinWidth]="128"
+    [onlyScaleDown]="true"
+    [roundCropper]="false"
+    [style.display]="showCropper ? null : 'none'"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+  <p [hidden]="!showCropper">Result</p>
+  <img
+    [src]="croppedImage"
+    [style.display]="showCropper ? null : 'none'"
+    class="img-thumbnail"
+  />
+</div>
+
+<button class="file" mat-mini-fab color="primary" (click)="fileUpload.click()">
+  <mat-icon>attach_file</mat-icon>
+</button>

@@ -1,0 +1,43 @@
+@import "./../../../../styles.scss";
+
+:host {
+  @include flex-center(column);
+
+  button.file {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 18.813px;
+  }
+  .cropper {
+    @include flex-center(column);
+    margin-bottom: 10px;
+    p {
+      color: var(--text-color);
+    }
+    image-cropper {
+      height: 180px;
+      width: 180px;
+      border-radius: 4px;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .img-thumbnail {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    &.auth {
+      p {
+        color: white;
+      }
+      ::ng-deep .ngx-ic-overlay {
+        outline: var(--primary) solid 100vw;
+      }
+    }
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}
