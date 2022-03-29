@@ -20,6 +20,24 @@ strong {
   font-weight: bold;
 }
 
+button.default-button {
+  background-color: var(--button-background-color);
+  color: var(--text-color);
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--button-disabled-background-color);
+    color: var(--button-disabled-text-color);
+    &:hover {
+      background-color: var(--button-disabled-background-color);
+    }
+  }
+
+  &:hover {
+    background-color: var(--button-hover-background-color);
+  }
+}
+
 :root {
   @each $name, $color in $project-colors {
     --#{$name}: #{$color};
