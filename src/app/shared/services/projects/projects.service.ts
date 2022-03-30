@@ -18,8 +18,11 @@ export class ProjectsService {
     projects: Project[];
   }
 
+  private project: Project
+
   allProjects$: Observable<Project[]>
   project$: Observable<Project>
+
 
   constructor(private firebase: FirebaseService) {
     const aopaUser = from(this.firebase.getUser())
@@ -33,6 +36,7 @@ export class ProjectsService {
     this.projectData.projects.push({
       ...project,
       id: this.projectData.currentId,
+      projects: []
     }
     )
     this.projectData.currentId++
@@ -42,12 +46,29 @@ export class ProjectsService {
   }
 
   setProject(id: number) {
-    console.log(this.projectData)
     const findProject = this.projectData.projects.find(project => project.id == id)
     if (!findProject) return
+    this.project = findProject
     this.project$ = of(findProject)
   }
 
+  addSubProject(subProject: string) {
+    this.project.projects.push({
+      name: subProject,
+      id: this.projectData.currentId,
+      tasks: []
+    })
+    this.projectData.currentId++
+    this.saveData(AllKeysData.CURRENT_ID, this.projectData.currentId)
+    this.project$ = of(this.project)
+    this.projectData.projects.forEach(project => {
+      if (project.id == this.project.id) {
+        project.projects = this.project.projects
+      }
+    }
+    )
+    this.saveProjects()
+  }
   saveData(key: AllKeysData, value: ValuesTaskData): void {
     this.firebase.updateDataFields(DataKey.PROJECT_DATA, key, value);
   }
