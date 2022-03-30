@@ -15,7 +15,13 @@ export interface AopaUser {
     occupation: string;
     darkThemePreference: boolean;
     phrasePreference: boolean;
-    tasks: TaskData;
+    taskData: TaskData;
+    projectData: ProjectData;
+}
+
+export interface ProjectData {
+    currentDay: string;
+    currentId: number;
     projects: Array<Project>;
 }
 
@@ -33,6 +39,10 @@ export enum eFireStorageCollections {
     USERS = 'Users',
 }
 
+export enum DataKey {
+    PROJECT_DATA = 'projectData',
+    TASK_DATA = 'taskData',
+}
 export enum FirebaseToastMessage {
     USER_CREATED = 'Usuário criado com sucesso!',
     USER_UPDATED = 'Usuário atualizado com sucesso!',
@@ -61,12 +71,16 @@ export enum FirebaseThrowError {
     USER_HAS_FACEBOOK_LOGIN = 'Usuário já está logado com o Facebook.',
 }
 
-export enum KeysTaskData {
+export enum AllKeysData {
     CURRENT_DAY = 'currentDay',
     CURRENT_ID = 'currentId',
     LAST_SUNDAY = 'lastSunday',
     TODAY_CURRENT_STREAK = 'todayCurrentStreak',
     WEEK_CURRENT_STREAK = 'weekCurrentStreak',
+    TODAY = 'today',
+    WEEK = 'week',
+    PROJECTS = 'projects',
+
 }
 
-export type ValuesTaskData = string | number | Array<Task>;
+export type ValuesData = string | number | Array<Task | Project>;
