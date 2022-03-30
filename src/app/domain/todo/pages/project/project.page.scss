@@ -1,7 +1,93 @@
 @import "./../../../../../styles.scss";
 
 :host {
-  .mat-form-field {
-    margin-right: 4px;
+  color: var(--text-color);
+
+  aopa-header {
+    margin: 0 auto;
+    padding: 15px;
+    mat-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+    h1 {
+      @include flex-center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0px !important;
+    }
+  }
+
+  .data-project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #0f589c40;
+    width: min(700px, 80%);
+    margin: 20px auto 0px auto;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.35);
+    animation: slowMoviment 5s ease-in-out infinite alternate;
+
+    p {
+      margin-top: 5px;
+      word-break: break-word;
+      text-align: center;
+    }
+    mat-icon {
+      position: relative;
+      top: 5px;
+    }
+  }
+
+  aopa-input-task {
+    margin: 0 auto;
+  }
+
+  .panel-projects {
+    padding: 0 15px;
+    width: min(100%, 800px);
+    margin: 0 auto;
+    .circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--background-color);
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      box-shadow: 2px 2px 3px #0000005d;
+    }
+    mat-expansion-panel {
+      width: min(100%, 800px);
+      margin: 20px auto 0px auto;
+    }
+    ::ng-deep .mat-expansion-panel-header-title {
+      color: var(--text-color);
+      font-family: "Poppins", sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+    }
+    ::ng-deep .mat-expansion-indicator::after {
+      color: var(--text-color);
+    }
+    .mat-expansion-panel {
+      background-color: var(--form-field);
+      box-shadow: 1px 0px 5px #00000066;
+    }
+    .mat-expansion-panel-header {
+      margin: 10px 0px;
+    }
+    ::ng-deep
+      .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+      .mat-expansion-panel-header:hover {
+      background-color: var(--form-field);
+    }
+    ::ng-deep .mat-expansion-panel-body {
+      padding: 0;
+    }
   }
 }

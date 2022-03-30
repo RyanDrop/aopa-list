@@ -1,0 +1,38 @@
+<div class="project" *ngIf="project$ |async; let project">
+  <aopa-header>
+    <mat-icon routerLink="/home">home</mat-icon>
+    <h1>{{project.name | titlecase}}</h1>
+    <mat-icon></mat-icon>
+  </aopa-header>
+
+  <div class="data-project">
+    <p><mat-icon>sticky_note_2</mat-icon>{{project.goal}}</p>
+    <p>
+      <mat-icon>insert_invitation</mat-icon>{{project.endDate |
+      date:"dd/MM/yy"}}
+    </p>
+  </div>
+
+  <aopa-input-task
+    [labelName]="'Add a sub project'"
+    (submitTask)="addSubProject($event)"
+    [placeholder]="'Learning english'"
+  ></aopa-input-task>
+
+  <div class="panel-projects" *ngFor="let subProject of project.projects">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <div class="circle"></div>
+          <mat-panel-title> {{subProject.name}} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <aopa-input-task
+          [labelName]="'Task'"
+          (submitTask)="addTask(subProject.id, $event)"
+          [placeholder]="'Ex. clean the room '"
+        ></aopa-input-task>
+        <aopa-display-tasks [listTasks]="subProject.tasks"></aopa-display-tasks>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
