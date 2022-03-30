@@ -6,3 +6,15 @@
     opacity: 1;
   }
 }
+
+@keyframes slowMoviment {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}

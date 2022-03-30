@@ -4,7 +4,6 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updat
 import { doc, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Storage } from '@angular/fire/storage';
 import { HotToastService } from '@ngneat/hot-toast';
-import { KeyLists } from 'app/domain/todo/services/tasks/task.service.models';
 import { Project } from 'app/shared/services/projects/projects.service.models';
 import { getDoc } from 'firebase/firestore';
 import {
@@ -15,7 +14,7 @@ import {
 } from 'firebase/storage';
 import { defer, Observable } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
-import { AopaUser, eFireStorageCollections, FirebaseThrowError, FirebaseToastMessage, FIREBASE_ERROR_MENSAGENS, KeysTaskData, RegisterUser, ValuesTaskData } from './firebase.service.models';
+import { AllKeysData, AopaUser, DataKey, eFireStorageCollections, FirebaseThrowError, FirebaseToastMessage, FIREBASE_ERROR_MENSAGENS, RegisterUser, ValuesData } from './firebase.service.models';
 
 
 const spaceBeforeEveryUppercase = (str: string) =>
@@ -53,7 +52,7 @@ export class FirebaseService {
       occupation: user.occupation,
       darkThemePreference: false,
       phrasePreference: true,
-      tasks: {
+      taskData: {
         currentDay: '0',
         currentId: 0,
         lastSunday: '0',
@@ -62,7 +61,11 @@ export class FirebaseService {
         week: [],
         weekCurrentStreak: 0,
       },
-      projects: [],
+      projectData: {
+        currentId: 0,
+        currentDay: '0',
+        projects: [],
+      },
     };
 
     return this.createUserWithEmailAndPassword(user.email, user.password).pipe(
@@ -186,10 +189,10 @@ export class FirebaseService {
     return aopaUser;
   }
 
-  updateTasksFields(key: KeysTaskData | KeyLists, value: ValuesTaskData): void {
+  updateDataFields(dataKey: DataKey, key: AllKeysData, value: ValuesData): void {
     const usersDocReference = this.getReference();
     try {
-      updateDoc(usersDocReference, { [`tasks.${key}`]: value });
+      updateDoc(usersDocReference, { [`${dataKey}.${key}`]: value });
     } catch (error) {
       this.toast.error(`Error adding document: ${error}`);
     }
