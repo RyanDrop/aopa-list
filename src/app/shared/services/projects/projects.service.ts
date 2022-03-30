@@ -69,6 +69,29 @@ export class ProjectsService {
     )
     this.saveProjects()
   }
+
+  addTaskInSubProject(subProjectiD: number, task: string) {
+    const findSubProject = this.project.projects.find(project => project.id == subProjectiD)
+    if (!findSubProject) return
+    findSubProject.tasks.push({
+      description: task,
+      id: this.projectData.currentId,
+      status: false
+    })
+    this.projectData.currentId++
+    this.saveData(AllKeysData.CURRENT_ID, this.projectData.currentId)
+    this.project$ = of(this.project)
+    this.projectData.projects.forEach(project => {
+      if (project.id == this.project.id) {
+        project.projects = this.project.projects
+      }
+    }
+    )
+    this.saveProjects()
+
+  }
+
+
   saveData(key: AllKeysData, value: ValuesTaskData): void {
     this.firebase.updateDataFields(DataKey.PROJECT_DATA, key, value);
   }
