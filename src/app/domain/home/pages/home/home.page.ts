@@ -18,7 +18,7 @@ import { UpdateProfileImageDialogComponent } from '../../components/update-profi
 })
 export class HomePage implements OnInit {
 
-  constructor(private readonly firebase: FirebaseService, private dialog: MatDialog, private projects: ProjectsService
+  constructor(private readonly firebase: FirebaseService, private dialog: MatDialog, private projectsService: ProjectsService
   ) { }
 
   name: string;
@@ -55,7 +55,7 @@ export class HomePage implements OnInit {
   }
 
   get projects$(): Observable<Project[]> {
-    return this.projects.project$
+    return this.projectsService.allProjects$
   }
 
   reloadImage() {

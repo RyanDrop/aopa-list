@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { DateFnsService } from 'app/domain/todo/services/date-fns/date-fns.service';
+import { DateFnsService } from 'app/shared/services/date-fns/date-fns.service';
 import { ProjectsService } from 'app/shared/services/projects/projects.service';
-import { Project } from 'app/shared/services/projects/projects.service.models';
+import { CreateProject } from 'app/shared/services/projects/projects.service.models';
 
 @Component({
   selector: 'aopa-create-project-dialog',
@@ -92,13 +92,12 @@ export class CreateProjectDialogComponent implements OnInit {
   submitForm() {
     const data = this.dateFns.formatDate(this.projectEndDate.value, 'yyyy-MM-dd')
 
-    const project: Project = {
+    const project: CreateProject = {
       name: this.projectName.value,
       goal: this.projectGoal.value,
       endDate: data,
       icon: this.projectIcon.value,
       color: this.projectColor.value,
-      id: 0
     }
     this.projects.addProject(project)
   }

@@ -1,5 +1,5 @@
 <h1>Create a new project</h1>
-<mat-stepper #stepper>
+<mat-stepper #stepper linear>
   <mat-step [stepControl]="firstGroupCreateProject">
     <form [formGroup]="firstGroupCreateProject">
       <aopa-form-input
@@ -95,7 +95,12 @@
         <button class="default-button back" mat-button matStepperPrevious>
           Back
         </button>
-        <button class="default-button" mat-button (click)="submitForm()">
+        <button
+          class="default-button"
+          mat-button
+          (click)="submitForm()"
+          mat-dialog-close
+        >
           Create Project
         </button>
       </div>

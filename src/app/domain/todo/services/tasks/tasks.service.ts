@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'app/shared/services/firebase/firebase.service';
+import { AllKeysData, DataKey, ValuesData } from 'app/shared/services/firebase/firebase.service.models';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { KeysTaskData, ValuesTaskData } from '../../../../shared/firebase';
-import { DateFnsService } from '../date-fns/date-fns.service';
+import { DateFnsService } from '../../../../shared/services/date-fns/date-fns.service';
 import { KeyLists, Task } from './task.service.models';
 
 @UntilDestroy()
@@ -38,7 +38,7 @@ export class TasksService {
 
     const aopaUser = from(this.firebase.getUser())
     aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
-      this.taskData = aopa.user.tasks
+      this.taskData = aopa.user.taskData;
       this.tasks = this.taskData[listTask]
       this.tasks$ = of(this.tasks)
 
@@ -55,7 +55,7 @@ export class TasksService {
     });
     this.taskData.currentId += 1;
 
-    this.saveData(KeysTaskData.CURRENT_ID, this.taskData.currentId);
+    this.saveData(AllKeysData.CURRENT_ID, this.taskData.currentId);
     this.saveTasks();
   }
 
@@ -123,9 +123,9 @@ export class TasksService {
     this.currentStreak = this.taskData.todayCurrentStreak;
     this.taskData.currentDay = this.dateFnsService.formattedCurrentDate;
 
-    this.saveData(KeysTaskData.CURRENT_DAY, this.taskData.currentDay);
+    this.saveData(AllKeysData.CURRENT_DAY, this.taskData.currentDay);
     this.saveData(
-      KeysTaskData.TODAY_CURRENT_STREAK,
+      AllKeysData.TODAY_CURRENT_STREAK,
       this.taskData.todayCurrentStreak
     );
     this.clearTasks();
@@ -153,9 +153,9 @@ export class TasksService {
     this.currentStreak = this.taskData.weekCurrentStreak;
     this.taskData.lastSunday = this.dateFnsService.formattedNextSunday;
 
-    this.saveData(KeysTaskData.LAST_SUNDAY, this.taskData.lastSunday);
+    this.saveData(AllKeysData.LAST_SUNDAY, this.taskData.lastSunday);
     this.saveData(
-      KeysTaskData.WEEK_CURRENT_STREAK,
+      AllKeysData.WEEK_CURRENT_STREAK,
       this.taskData.weekCurrentStreak
     );
     this.clearTasks();
@@ -166,12 +166,13 @@ export class TasksService {
     return getStreak;
   }
 
-  saveData(key: KeysTaskData, value: ValuesTaskData): void {
-    this.firebase.updateTasksFields(key, value);
+  saveData(key: AllKeysData, value: ValuesData): void {
+    this.firebase.updateDataFields(DataKey.TASK_DATA, key, value);
   }
 
   saveTasks() {
-    this.firebase.updateTasksFields(this.currentListTask, this.tasks);
+    const list = this.currentListTask === KeyLists.TODAY ? AllKeysData.TODAY : AllKeysData.WEEK;
+    this.firebase.updateDataFields(DataKey.TASK_DATA, list, this.tasks);
   }
 
   clearTasks(): void {
