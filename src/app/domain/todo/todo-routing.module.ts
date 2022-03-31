@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListPage,
   },
   {
-    path: 'project/:id',
+    path: 'project/:name/:id',
     component: ProjectPage,
   }
 ];

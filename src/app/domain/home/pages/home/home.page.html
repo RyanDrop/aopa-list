@@ -47,7 +47,7 @@
     <aopa-project-card
       *ngFor="let project of projects$ | async"
       [project]="project"
-      [routerLink]="'/todo/project/' + project.id"
+      [routerLink]="'/todo/project/' + project.name + '/' + project.id"
     >
     </aopa-project-card>
 
