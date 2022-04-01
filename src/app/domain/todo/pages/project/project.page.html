@@ -11,6 +11,11 @@
       <mat-icon>insert_invitation</mat-icon>{{project.endDate |
       date:"dd/MM/yy"}}
     </p>
+    <p>{{projectsService.projectPercentage$$.value }}%</p>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ projectsService.projectPercentage$$.value }}"
+    ></mat-progress-bar>
   </div>
 
   <aopa-input-task
@@ -31,7 +36,12 @@
           (submitTask)="addTask(subProject.id, $event)"
           [placeholder]="'Ex. clean the room '"
         ></aopa-input-task>
-        <aopa-display-tasks [listTasks]="subProject.tasks"></aopa-display-tasks>
+        <aopa-display-tasks
+          [listTasks]="subProject.tasks"
+          (checkboxChange)="projectsService.getPercentageTasks()"
+          [currentService]="projectsService"
+          [subProjectId]="subProject.id"
+        ></aopa-display-tasks>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
