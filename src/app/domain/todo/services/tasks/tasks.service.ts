@@ -59,14 +59,14 @@ export class TasksService {
     this.saveTasks();
   }
 
-  removeTask(taskId: number): void {
+  removeTask(taskId: number, _: any): void {
     const findTask = this.tasks.find((task) => task.id === taskId);
     const index = this.tasks.indexOf(findTask!);
     this.tasks.splice(index, 1);
     this.saveTasks();
   }
 
-  updateDescriptionTask(taskDescription: string, taskId: number): void {
+  updateDescriptionTask(taskDescription: string, taskId: number, _: any): void {
     const findTask = this.tasks.find((task) => task.id === taskId);
     findTask!.description = taskDescription;
     this.saveTasks();

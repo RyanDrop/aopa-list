@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
   occupation: string;
   profileImage: string | null
   loading = false
+  projects$: Observable<Project[]>
 
   openCreateProjectDialog(): void {
     this.dialog.open(CreateProjectDialogComponent);
@@ -52,11 +53,11 @@ export class HomePage implements OnInit {
         document.documentElement.classList.add('dark-mode')
       }
     })
+
+    this.projects$ = this.projectsService.getProjects()
   }
 
-  get projects$(): Observable<Project[]> {
-    return this.projectsService.allProjects$
-  }
+
 
   reloadImage() {
     const aopaUser = from(this.firebase.getUser())

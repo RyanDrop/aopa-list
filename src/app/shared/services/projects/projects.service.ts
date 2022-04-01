@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ValuesTaskData } from 'app/shared/firebase';
 import { CreateProject, Project } from 'app/shared/services/projects/projects.service.models';
-import { from, Observable, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AllKeysData, DataKey } from '../firebase/firebase.service.models';
 
@@ -22,14 +23,19 @@ export class ProjectsService {
 
   allProjects$: Observable<Project[]>
   project$: Observable<Project>
+  projectPercentage$$ = new BehaviorSubject<number>(0);
 
 
   constructor(private firebase: FirebaseService) {
+
+  }
+
+  getProjects() {
     const aopaUser = from(this.firebase.getUser())
-    aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {
+    return aopaUser.pipe(untilDestroyed(this), switchMap((aopa) => {
       this.projectData = aopa.user.projectData
-      this.allProjects$ = of(this.projectData.projects)
-    })
+      return this.allProjects$ = of(this.projectData.projects)
+    }))
   }
 
   addProject(project: CreateProject) {
@@ -45,9 +51,7 @@ export class ProjectsService {
     this.saveProjects()
   }
 
-  setProject(id: number) {
-    const findProject = this.projectData.projects.find(project => project.id == id)
-    if (!findProject) return
+  setProject(findProject: Project) {
     this.project = findProject
     this.project$ = of(findProject)
   }
