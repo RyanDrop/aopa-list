@@ -65,7 +65,7 @@ export class ProjectsService {
     this.projectData.currentId++
     this.saveData(AllKeysData.CURRENT_ID, this.projectData.currentId)
     this.project$ = of(this.project)
-    this.projectData.projects.forEach(project => {
+    this.projectData.projects.find(project => {
       if (project.id == this.project.id) {
         project.projects = this.project.projects
       }
@@ -84,6 +84,16 @@ export class ProjectsService {
     })
     this.projectData.currentId++
     this.saveData(AllKeysData.CURRENT_ID, this.projectData.currentId)
+
+    this.project$ = of(this.project)
+    this.projectData.projects.find(project => {
+      if (project.id == this.project.id) {
+        project.projects = this.project.projects
+      }
+    }
+    )
+    this.saveProjects()
+  }
     this.project$ = of(this.project)
     this.projectData.projects.forEach(project => {
       if (project.id == this.project.id) {
