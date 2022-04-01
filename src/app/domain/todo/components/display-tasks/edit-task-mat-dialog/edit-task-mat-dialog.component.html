@@ -1,15 +1,11 @@
 <h1 mat-dialog-title>Edit Task</h1>
 <aopa-input-task
   [labelName]="'Task'"
-  [task]="task.description"
-  (submitTask)="updateDescriptionTodayTask($event, task.id)"
+  [task]="data.task.description"
+  (submitTask)="updateTaskDescription($event, data.task.id)"
 ></aopa-input-task>
 <div class="buttons-container">
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="removeTaskFromTodayList(task.id)"
-  >
+  <button mat-raised-button color="warn" (click)="removeTask(data.task.id)">
     Delete
   </button>
   <button mat-raised-button mat-dialog-close>Cancel</button>

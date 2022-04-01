@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TasksService } from 'app/domain/todo/services/tasks/tasks.service';
-import { Observable } from 'rxjs';
+import { ProjectsService } from 'app/shared/services/projects/projects.service';
 import { Task } from './../../../services/tasks/task.service.models';
 
 @Component({
@@ -12,22 +12,18 @@ import { Task } from './../../../services/tasks/task.service.models';
 export class EditTaskMatDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EditTaskMatDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public task: Task,
-    private tasksService: TasksService
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: { task: Task; currentService: TasksService | ProjectsService, subProjectId: number },
+  ) { }
 
-  get todayListTasks$(): Observable<Task[]> {
-    return this.tasksService.tasks$;
-  }
-
-  removeTaskFromTodayList(taskId: number): void {
-    this.tasksService.removeTask(taskId);
-    this.tasksService.getPercentageTasks();
+  removeTask(taskId: number): void {
+    console.log(this.data.task)
+    this.data.currentService.removeTask(taskId, this.data.subProjectId);
+    this.data.currentService.getPercentageTasks();
     this.dialogRef.close();
   }
 
-  updateDescriptionTodayTask(taskDescription: string, taskId: number): void {
-    this.tasksService.updateDescriptionTask(taskDescription, taskId);
+  updateTaskDescription(taskDescription: string, taskId: number): void {
+    this.data.currentService.updateDescriptionTask(taskDescription, taskId, this.data.subProjectId);
     this.dialogRef.close();
   }
 }

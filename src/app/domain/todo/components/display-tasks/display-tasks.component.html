@@ -6,7 +6,7 @@
     ></mat-checkbox>
 
     <p [class.checked]="task.status">{{ task.description }}</p>
-    <button mat-button (click)="openDialog(task)">
+    <button mat-button (click)="openDialog(task, currentService, subProjectId)">
       <mat-icon>mode_edit_outline</mat-icon>
     </button>
   </mat-card>

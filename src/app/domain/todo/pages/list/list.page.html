@@ -21,5 +21,6 @@
   <aopa-display-tasks
     [listTasks]="listTasks$ | async"
     (checkboxChange)="tasksService.getPercentageTasks()"
+    [currentService]="tasksService"
   ></aopa-display-tasks>
 </div>

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
+import { ProjectsService } from 'app/shared/services/projects/projects.service';
+import { TasksService } from '../../services/tasks/tasks.service';
 import { Task } from './../../services/tasks/task.service.models';
 import { EditTaskMatDialogComponent } from './edit-task-mat-dialog/edit-task-mat-dialog.component';
 
@@ -10,15 +12,23 @@ import { EditTaskMatDialogComponent } from './edit-task-mat-dialog/edit-task-mat
   styleUrls: ['./display-tasks.component.scss'],
 })
 export class DisplayTasksComponent {
-  @Input() listTasks: any;
+  @Input() listTasks: Task[] | null
+  @Input() currentService: TasksService | ProjectsService
+  @Input() subProjectId: number = 0;
+
   @Output() checkboxChange: EventEmitter<Task> = new EventEmitter<Task>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
-  openDialog(task: Task): void {
+  openDialog(task: Task, currentService: TasksService | ProjectsService, subProjectId: number): void {
     this.dialog.open(EditTaskMatDialogComponent, {
       width: '500px',
-      data: task,
+      data: {
+        task,
+        currentService,
+        subProjectId
+      },
+
     });
   }
 
