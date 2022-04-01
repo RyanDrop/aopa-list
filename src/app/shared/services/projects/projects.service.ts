@@ -56,6 +56,7 @@ export class ProjectsService {
     this.project$ = of(findProject)
   }
 
+
   addSubProject(subProject: string) {
     this.project.projects.push({
       name: subProject,
@@ -94,15 +95,54 @@ export class ProjectsService {
     )
     this.saveProjects()
   }
+
+  removeTask(taskId: number, subProjectId: number) {
+    const findSubProject = this.project.projects.find(project => project.id === subProjectId)
+    if (!findSubProject) return
+    const deleteTask = findSubProject.tasks.filter(task => task.id !== taskId)
+    findSubProject.tasks = deleteTask
     this.project$ = of(this.project)
-    this.projectData.projects.forEach(project => {
+    this.projectData.projects.find(project => {
       if (project.id == this.project.id) {
         project.projects = this.project.projects
       }
     }
     )
     this.saveProjects()
+  }
 
+  updateDescriptionTask(description: string, taskId: number, subProjectId: number) {
+    const findSubProject = this.project.projects.find(project => project.id === subProjectId)
+    if (!findSubProject) return
+    const findTask = findSubProject.tasks.find(task => task.id === taskId)
+    if (!findTask) return
+    findTask.description = description
+    this.project$ = of(this.project)
+    this.projectData.projects.find(project => {
+      if (project.id == this.project.id) {
+        project.projects = this.project.projects
+      }
+    }
+    )
+    this.saveProjects()
+  }
+
+
+  getPercentageTasks(): void {
+    this.saveProjects();
+    const completedTasksLength = this.project.projects.reduce((acc, project) => {
+      return acc + project.tasks.filter(task => task.status).length
+    }, 0)
+
+
+    const totalTasksLength = this.project.projects.reduce((acc, project) => {
+      return acc + project.tasks.length
+    }, 0)
+
+    const projectPercentage = Math.round(
+      (completedTasksLength / totalTasksLength) * 100
+    )
+    this.projectPercentage$$.next(projectPercentage);
   }
 
 
