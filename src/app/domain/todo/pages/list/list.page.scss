@@ -19,6 +19,18 @@
     }
   }
 
+  aopa-input-task {
+    margin: 0 auto;
+    padding: 0 15px;
+    width: min(100%, 800px);
+  }
+
+  aopa-display-tasks {
+    width: min(100%, 800px);
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+
   mat-spinner {
     position: absolute;
     top: 50%;

@@ -3,6 +3,9 @@
 :host {
   color: var(--text-color);
   user-select: none;
+  .project {
+    padding: 0 0 20px 0;
+  }
 
   aopa-header {
     margin: 0 auto;
@@ -45,6 +48,14 @@
   }
 
   aopa-input-task {
+    width: min(100%, 800px);
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+
+  aopa-display-tasks {
+    width: min(100%, 800px);
+    padding: 0 15px;
     margin: 0 auto;
   }
 
@@ -53,9 +64,9 @@
   }
 
   .panel-projects {
-    padding: 0 15px;
     width: min(100%, 800px);
     margin: 0 auto;
+    padding: 0 15px;
     .circle {
       width: 20px;
       height: 20px;
@@ -67,7 +78,7 @@
       box-shadow: 2px 2px 3px #0000005d;
     }
     mat-expansion-panel {
-      width: min(100%, 800px);
+      width: min(100%, 770px);
       margin: 20px auto 0px auto;
     }
     ::ng-deep .mat-expansion-panel-header-title {

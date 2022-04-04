@@ -23,7 +23,6 @@ export class InputTaskComponent {
 
   submitValue(value: string) {
     this.submitTask.emit(value);
-    this.taskDescription.reset();
-    this.taskDescription.markAsDirty();
+    this.taskDescription.reset(null);
   }
 }
