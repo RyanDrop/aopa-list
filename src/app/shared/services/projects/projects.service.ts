@@ -129,6 +129,7 @@ export class ProjectsService {
 
 
   getPercentageTasks(): void {
+    if (this.project.projects.length === 0) return
     this.saveProjects();
     const completedTasksLength = this.project.projects.reduce((acc, project) => {
       return acc + project.tasks.filter(task => task.status).length

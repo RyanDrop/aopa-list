@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-  <img alt="Angular 13" src=".github/logo.svg" width="250px"/>
+  <img alt="logo-todo-list" src="./readme-images/logo.png" width="350px" style="border-radius:20px"/>
 </p>
 
 <p align="center"> 
@@ -36,7 +36,12 @@ Deploy do front-end efetuado no [Netlify](https://www.netlify.com/) para visuali
 
 |                             :computer:Desktop                             |                             :iphone: Mobile                              |
 | :-----------------------------------------------------------------------: | :----------------------------------------------------------------------: |
-| <kbd><img src=".github/previews/desktop-preview.png" alt="Tablet"/></kbd> | <kbd><img src=".github/previews/mobile-preview.png" alt="Mobile"/></kbd> |
+| <img src="./readme-images/desk-todo.png" alt="Desktop"/> | <img src="./readme-images/mobile-todo.png" alt="Mobile"/> |
+| <img src="./readme-images/desk-todo2.png" alt="Desktop"/> | <img src="./readme-images/mobile-todo2.png" alt="Mobile"/> |
+| <img src="./readme-images/desk-todo3.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo3.png" alt="Mobile"/> |
+| <img src="./readme-images/desk-todo4.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo4.png" alt="Mobile"/> |
+| <img src="./readme-images/desk-todo5.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo5.png" alt="Mobile"/> |
+| <kbd><img src="./readme-images/desk-light.png" alt="Desktop"/></kdb>| <kdb><img src="./readme-images/mobile-light.png" alt="Mobile"/></kbd> |
 
 </div>
   
@@ -46,7 +51,7 @@ Deploy do front-end efetuado no [Netlify](https://www.netlify.com/) para visuali
 
 <div align="center">
 
-Aplicação feita para aplicar os conceitos ensinados no grupo de estudos de Angular.
+Aplicação To-do feita para aplicar os conceitos ensinados no grupo de estudos de Angular.
 
 ---
 
@@ -107,6 +112,7 @@ $ ng serve --open ou ng s -o
 | [Angular Material 13](https://material.angular.io/) |
 |           [SASS](https://sass-lang.com/)            |
 | [TypeScript 4.0.2](https://www.typescriptlang.org/) |
+| [RxJS 7.1](https://rxjs-dev.firebaseapp.com/guide/overview) |
 
 </div>
 
@@ -118,10 +124,17 @@ $ ng serve --open ou ng s -o
 
 |       :page_facing_up:        |
 | :---------------------------: |
-| ............................. |
-| ............................. |
-| ............................. |
-| ............................. |
+|        Atomic Commit        |
+|    Conventional Commits     |
+|        API Consuming        |
+| Dynamic Template Rendering  |
+| Progressive Web Application |
+|          ReactiveX          |
+|    Observable Operators     |
+|    Async/Await Operators    |
+|        HTTP Requests        |
+|     LazyLoading Module      |
+|       Domain Modules        |
 
 </div>
 
@@ -133,13 +146,11 @@ $ ng serve --open ou ng s -o
 
 |       :page_facing_up:        |
 | :---------------------------: |
-| ............................. |
-| ............................. |
-| ............................. |
-| ............................. |
-| ............................. |
-| ............................. |
-| ............................. |
+|  Autenticação com Firebase    |
+| Se organizar com a criação de tarefas de forma simples, como: |
+| Criar tarefas diárias e semanais |
+| Criar proejetos com subtarefas |
+| Dark-mode |
 
 </div>
 
