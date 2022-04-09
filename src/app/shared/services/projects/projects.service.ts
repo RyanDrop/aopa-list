@@ -51,6 +51,11 @@ export class ProjectsService {
     this.saveProjects()
   }
 
+  removeProject(projectId: number) {
+    this.projectData.projects = this.projectData.projects.filter(project => project.id !== projectId)
+    this.saveProjects()
+  }
+
   setProject(findProject: Project) {
     this.project = findProject
     this.project$ = of(findProject)
@@ -65,6 +70,18 @@ export class ProjectsService {
     })
     this.projectData.currentId++
     this.saveData(AllKeysData.CURRENT_ID, this.projectData.currentId)
+    this.project$ = of(this.project)
+    this.projectData.projects.find(project => {
+      if (project.id == this.project.id) {
+        project.projects = this.project.projects
+      }
+    }
+    )
+    this.saveProjects()
+  }
+
+  removeSubProject(subProjectId: number) {
+    this.project.projects = this.project.projects.filter(subProject => subProject.id !== subProjectId)
     this.project$ = of(this.project)
     this.projectData.projects.find(project => {
       if (project.id == this.project.id) {
