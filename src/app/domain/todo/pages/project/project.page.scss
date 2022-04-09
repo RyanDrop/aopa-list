@@ -81,6 +81,15 @@
       width: min(100%, 770px);
       margin: 20px auto 0px auto;
     }
+    button.delete{
+      margin: 0 15px 15px 15px;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      &:hover {
+        background-color: #1d3850
+      }
+    }
     ::ng-deep .mat-expansion-panel-header-title {
       color: var(--text-color);
       font-family: "Poppins", sans-serif;

@@ -2,7 +2,7 @@
   <aopa-header>
     <mat-icon routerLink="/home">home</mat-icon>
     <h1>{{project.name | titlecase}}</h1>
-    <mat-icon></mat-icon>
+    <mat-icon (click)="openDialog('project',project.id)">delete</mat-icon>
   </aopa-header>
 
   <div class="data-project">
@@ -29,7 +29,8 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <div class="circle"></div>
-          <mat-panel-title> {{subProject.name}} </mat-panel-title>
+          <mat-panel-title> {{subProject.name}}  </mat-panel-title>
+           
         </mat-expansion-panel-header>
         <aopa-input-task
           [labelName]="'Task'"
@@ -42,6 +43,10 @@
           [currentService]="projectsService"
           [subProjectId]="subProject.id"
         ></aopa-display-tasks>
+        <button class="delete default-button" mat-raised-button (click)="openDialog('subProject',subProject.id)">
+          Delete sub project
+          <mat-icon >delete</mat-icon>
+        </button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

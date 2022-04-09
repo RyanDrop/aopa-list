@@ -16,7 +16,6 @@ export class EditTaskMatDialogComponent {
   ) { }
 
   removeTask(taskId: number): void {
-    console.log(this.data.task)
     this.data.currentService.removeTask(taskId, this.data.subProjectId);
     this.data.currentService.getPercentageTasks();
     this.dialogRef.close();
