@@ -1,0 +1,25 @@
+@import "./../../../../../styles.scss";
+
+:host {
+  color: var(--text-color);
+  p {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .buttons {
+    @include flex-center;
+    button {
+      margin: 0 15px;
+      padding: 0 25px;
+    }
+
+    button:nth-child(1) {
+      background-color: #ff00009e;
+      &:hover {
+        background-color: #ff0000;
+      }
+    }
+  }
+}

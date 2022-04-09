@@ -21,6 +21,7 @@ import { ListPage } from './pages/list/list.page';
 import { ProjectPage } from './pages/project/project.page';
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoComponent } from './todo.component';
+import { DialogConfirmActionComponent } from './components/dialog-confirm-action/dialog-confirm-action.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TodoComponent } from './todo.component';
     TaskProgressComponent,
     EditTaskMatDialogComponent,
     ProjectPage,
+    DialogConfirmActionComponent,
 
   ],
   imports: [
