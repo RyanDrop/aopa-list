@@ -170,6 +170,7 @@ export class ProjectsService {
 
   saveProjects(): void {
     this.firebase.updateDataFields(DataKey.PROJECT_DATA, AllKeysData.PROJECTS, this.projectData.projects)
+    this.getPercentageTasks()
   }
 
 }

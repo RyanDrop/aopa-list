@@ -81,13 +81,14 @@
       width: min(100%, 770px);
       margin: 20px auto 0px auto;
     }
-    button.delete{
+    button.delete {
       margin: 0 15px 15px 15px;
       position: relative;
       left: 50%;
       transform: translate(-50%);
+      padding: 0 6px 0px 11px;
       &:hover {
-        background-color: #1d3850
+        background-color: #1d3850;
       }
     }
     ::ng-deep .mat-expansion-panel-header-title {
