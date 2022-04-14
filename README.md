@@ -34,14 +34,14 @@
 
 Deploy do front-end efetuado no [Netlify](https://www.netlify.com/) para visualizar: [Clique Aqui](https://ryandrop-aopalist.netlify.app/)
 
-|                             :computer:Desktop                             |                             :iphone: Mobile                              |
-| :-----------------------------------------------------------------------: | :----------------------------------------------------------------------: |
-| <img src="./readme-images/desk-todo.png" alt="Desktop"/> | <img src="./readme-images/mobile-todo.png" alt="Mobile"/> |
-| <img src="./readme-images/desk-todo2.png" alt="Desktop"/> | <img src="./readme-images/mobile-todo2.png" alt="Mobile"/> |
-| <img src="./readme-images/desk-todo3.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo3.png" alt="Mobile"/> |
-| <img src="./readme-images/desk-todo4.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo4.png" alt="Mobile"/> |
-| <img src="./readme-images/desk-todo5.png" alt="Desktop"/>| <img src="./readme-images/mobile-todo5.png" alt="Mobile"/> |
-| <kbd><img src="./readme-images/desk-light.png" alt="Desktop"/></kdb>| <kdb><img src="./readme-images/mobile-light.png" alt="Mobile"/></kbd> |
+|                          :computer:Desktop                           |                            :iphone: Mobile                            |
+| :------------------------------------------------------------------: | :-------------------------------------------------------------------: |
+|       <img src="./readme-images/desk-todo.png" alt="Desktop"/>       |       <img src="./readme-images/mobile-todo.png" alt="Mobile"/>       |
+|      <img src="./readme-images/desk-todo2.png" alt="Desktop"/>       |      <img src="./readme-images/mobile-todo2.png" alt="Mobile"/>       |
+|      <img src="./readme-images/desk-todo3.png" alt="Desktop"/>       |      <img src="./readme-images/mobile-todo3.png" alt="Mobile"/>       |
+|      <img src="./readme-images/desk-todo4.png" alt="Desktop"/>       |      <img src="./readme-images/mobile-todo4.png" alt="Mobile"/>       |
+|      <img src="./readme-images/desk-todo5.png" alt="Desktop"/>       |      <img src="./readme-images/mobile-todo5.png" alt="Mobile"/>       |
+| <kbd><img src="./readme-images/desk-light.png" alt="Desktop"/></kdb> | <kdb><img src="./readme-images/mobile-light.png" alt="Mobile"/></kbd> |
 
 </div>
   
@@ -106,12 +106,12 @@ $ ng serve --open ou ng s -o
 
 <div align="center">
 
-|           :globe_with_meridians: FrontEnd           |
-| :-------------------------------------------------: |
-|          [Angular 13](https://angular.io/)          |
-| [Angular Material 13](https://material.angular.io/) |
-|           [SASS](https://sass-lang.com/)            |
-| [TypeScript 4.0.2](https://www.typescriptlang.org/) |
+|               :globe_with_meridians: FrontEnd               |
+| :---------------------------------------------------------: |
+|              [Angular 13](https://angular.io/)              |
+|     [Angular Material 13](https://material.angular.io/)     |
+|               [SASS](https://sass-lang.com/)                |
+|     [TypeScript 4.0.2](https://www.typescriptlang.org/)     |
 | [RxJS 7.1](https://rxjs-dev.firebaseapp.com/guide/overview) |
 
 </div>
@@ -122,8 +122,8 @@ $ ng serve --open ou ng s -o
 
 <div align="center">
 
-|       :page_facing_up:        |
-| :---------------------------: |
+|      :page_facing_up:       |
+| :-------------------------: |
 |        Atomic Commit        |
 |    Conventional Commits     |
 |        API Consuming        |
@@ -144,13 +144,13 @@ $ ng serve --open ou ng s -o
 
 <div align="center">
 
-|       :page_facing_up:        |
-| :---------------------------: |
-|  Autenticação com Firebase    |
+|                       :page_facing_up:                        |
+| :-----------------------------------------------------------: |
+|                   Autenticação com Firebase                   |
 | Se organizar com a criação de tarefas de forma simples, como: |
-| Criar tarefas diárias e semanais |
-| Criar proejetos com subtarefas |
-| Dark-mode |
+|               Criar tarefas diárias e semanais                |
+|                Criar proejetos com subtarefas                 |
+|                           Dark-mode                           |
 
 </div>
 
@@ -168,7 +168,7 @@ $ ng serve --open ou ng s -o
 
 Desenvolvido com ❤️ por RyanDrop 👋🏽 Meus Contatos!
 
-[![Linkedin Badge](https://img.shields.io/badge/-RyanDrop-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ryan-nascimento-7204a4217/)
+[![Linkedin Badge](https://img.shields.io/badge/-RyanDrop-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ryan-on/)
 [![Github Badge](https://img.shields.io/badge/-RyanDrop-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/RyanDrop)
 
 </div>
