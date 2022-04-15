@@ -57,8 +57,6 @@ export class HomePage implements OnInit {
     this.projects$ = this.projectsService.getProjects()
   }
 
-
-
   reloadImage() {
     const aopaUser = from(this.firebase.getUser())
     aopaUser.pipe(untilDestroyed(this)).subscribe(aopa => {

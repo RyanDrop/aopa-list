@@ -45,23 +45,6 @@ export class CreateProjectDialogComponent implements OnInit {
       projectIcon: new FormControl(null, [
         Validators.required,
       ]),
-      // projectDescription: new FormControl(null, [
-      //   Validators.required,
-      //   Validators.maxLength(200),
-      // ]),
-      // projectType: new FormControl(null, [
-      //   Validators.required,
-      //   Validators.maxLength(50),
-      // ]),
-      // projectStartDate: new FormControl(null, [
-      //   Validators.required,
-      // ]),
-      // projectStatus: new FormControl(null, [
-      //   Validators.required,
-      // ]),
-      // projectPriority: new FormControl(null, [
-      //   Validators.required,
-      // ]),
     });
   }
 

@@ -26,9 +26,7 @@ export class ProjectsService {
   projectPercentage$$ = new BehaviorSubject<number>(0);
 
 
-  constructor(private firebase: FirebaseService) {
-
-  }
+  constructor(private firebase: FirebaseService) { }
 
   getProjects() {
     const aopaUser = from(this.firebase.getUser())
@@ -39,6 +37,7 @@ export class ProjectsService {
   }
 
   addProject(project: CreateProject) {
+    console.log(project)
     this.projectData.projects.push({
       ...project,
       id: this.projectData.currentId,
@@ -89,6 +88,7 @@ export class ProjectsService {
       }
     }
     )
+    this.saveProjects()
     this.saveProjects()
   }
 
@@ -141,7 +141,6 @@ export class ProjectsService {
       }
     }
     )
-    this.saveProjects()
   }
 
 
@@ -170,7 +169,5 @@ export class ProjectsService {
 
   saveProjects(): void {
     this.firebase.updateDataFields(DataKey.PROJECT_DATA, AllKeysData.PROJECTS, this.projectData.projects)
-    this.getPercentageTasks()
   }
-
 }
