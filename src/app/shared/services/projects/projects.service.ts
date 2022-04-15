@@ -25,7 +25,6 @@ export class ProjectsService {
   project$: Observable<Project>
   projectPercentage$$ = new BehaviorSubject<number>(0);
 
-
   constructor(private firebase: FirebaseService) { }
 
   getProjects() {
@@ -58,6 +57,7 @@ export class ProjectsService {
   setProject(findProject: Project) {
     this.project = findProject
     this.project$ = of(findProject)
+    this.getPercentageTasks()
   }
 
 
@@ -110,6 +110,7 @@ export class ProjectsService {
       }
     }
     )
+    this.getPercentageTasks()
     this.saveProjects()
   }
 
@@ -146,7 +147,6 @@ export class ProjectsService {
 
   getPercentageTasks(): void {
     if (this.project.projects.length === 0) return
-    this.saveProjects();
     const completedTasksLength = this.project.projects.reduce((acc, project) => {
       return acc + project.tasks.filter(task => task.status).length
     }, 0)
@@ -159,7 +159,9 @@ export class ProjectsService {
     const projectPercentage = Math.round(
       (completedTasksLength / totalTasksLength) * 100
     )
+    this.project.percentage = projectPercentage
     this.projectPercentage$$.next(projectPercentage);
+    this.saveProjects();
   }
 
 

@@ -81,6 +81,7 @@ export class CreateProjectDialogComponent implements OnInit {
       endDate: data,
       icon: this.projectIcon.value,
       color: this.projectColor.value,
+      percentage: 0,
     }
     this.projects.addProject(project)
   }

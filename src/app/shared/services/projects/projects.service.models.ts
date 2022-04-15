@@ -7,6 +7,7 @@ export interface Project {
     icon: string;
     color: string;
     id: number
+    percentage: number;
     projects: subProjects[];
 }
 
@@ -22,4 +23,5 @@ export interface CreateProject {
     endDate: string;
     icon: string;
     color: string;
+    percentage: number;
 }
